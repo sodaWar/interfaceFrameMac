@@ -15,6 +15,7 @@ def main():
     # 记录测试结束时间
     end_time = datetime.datetime.now()
     consume_time = end_time - start_time
+    print consume_time
 
     if len(error_test) > 0:
         html = '<html><body>接口自动化定期扫描,共有 ' + str(len(error_test)) + ' 个异常接口,列表如下：' + '</p><table><tr><th style="width:10px;">接口</th><th style="width:10px;">状态</th><th style="width:200px;">接口地址</th><th>接口返回值</th></tr>'
