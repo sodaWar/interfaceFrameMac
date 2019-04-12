@@ -2,23 +2,21 @@
 from smtplib import SMTP_SSL
 from email.header import Header
 from email.mime.text import MIMEText
-import sys
-sys.path.append('E:\MyProgram\InterfaceTestFrame\Config')
 from Config.read_config import DealCommonCfg
 
 
 # 接口超时预警邮件,发送文本格式的邮件
 class MailSend:
     dcc = DealCommonCfg()
-    mylist = dcc.read_config('email_qq')                                                # 获得配置文件中的信息内容
-    mydic = {}                                                                          # 将获得的内容转换为字典类型
-    for i in mylist:
-        mydic[i[0].encode('UTF-8')] = i[1].encode('UTF-8')
-    smtp_server = mydic['smtp_server']                                                  # QQ的SMTP服务器地址
-    sender_qq_adr = mydic['sender_qq_adr']                                              # 发送人的邮箱地址
-    password = mydic['password']                                                        # QQ邮箱的授权码
-    receiver_qq_adr = mydic['receiver_qq_adr']                                          # 收件人的邮箱地址
-    mail_to_copy = mydic['mail_to_copy']                                                        # 抄送人的邮箱地址
+    my_list = dcc.read_config('email_qq')                                                # 获得配置文件中的信息内容
+    my_dic = {}                                                                          # 将获得的内容转换为字典类型
+    for i in my_list:
+        my_dic[i[0].encode('UTF-8')] = i[1].encode('UTF-8')
+    smtp_server = my_dic['smtp_server']                                                  # QQ的SMTP服务器地址
+    sender_qq_adr = my_dic['sender_qq_adr']                                              # 发送人的邮箱地址
+    password = my_dic['password']                                                        # QQ邮箱的授权码
+    receiver_qq_adr = my_dic['receiver_qq_adr']                                          # 收件人的邮箱地址
+    mail_to_copy = my_dic['mail_to_copy']                                                        # 抄送人的邮箱地址
 
     def overtime_warn(self,mail_title):
         mail_content = 'warn,interface request overtime,please look out!!'  # 邮件的正文内容
@@ -42,8 +40,8 @@ class MailSend:
         smtp.quit()
 
     # 接口请求测试完成后的通知邮件,发送html格式的邮件
-    def send_mail(self,text):
-        subject = '[AutomantionTest]接口自动化测试报告通知'  # 邮件标题
+    def send_mail(self, text):
+        subject = '[AutomationTest]接口自动化测试报告通知'  # 邮件标题
         username = '893026750'  # 用户邮箱的账号
 
         msg = MIMEText(text, 'html', 'utf-8')

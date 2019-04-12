@@ -1,6 +1,5 @@
 # coding=utf-8
 from Logic.log_print import LogPrint
-from Logic.interface_deal import InterfaceDeal
 import json
 import hashlib
 import os
@@ -10,22 +9,24 @@ from pyDes import *                                                             
 
 
 class ExcelDeal:
-    # 获取执行测试用例
-    def runtest(self,testcase):
+    # 获取excel文件中的测试用例
+    @ staticmethod
+    def get_test(case):
         # join()函数是连接字符串数组,os.path.join()函数是将多个路径组合后返回,os.getcwd()是返回当前进程的工作目录,testcase是测试用例文件的目录地址
-        testcase = os.path.join(os.getcwd(),testcase)
-        if not os.path.exists(testcase):
+        case = os.path.join(os.getcwd(),case)
+        if not os.path.exists(case):
             lp = LogPrint()
             lp.error('测试用例文件不存在！')
             sys.exit()
-        test_case = xlrd.open_workbook(testcase)  # 打开文件
+        test_case = xlrd.open_workbook(case)  # 打开文件
         table = test_case.sheet_by_index(0)  # 根据shell索引获取sheet内容
         pwd = '123456'
-        error_case = []  # 用于保存接口返回的内容和HTTP状态码
+        param_list = []
+        all_list = []
 
         for i in range(1, table.nrows):  # 循环行列表数据,table.nrows是获取行数
             # table.cell().value获取某个单元格的内容值,该方法第一个参数是行数,第二个参数是列数
-            if table.cell(i, 9).value.replace('\n', '').replace('\r','') != 'Yes':
+            if table.cell(i, 10).value.replace('\n', '').replace('\r','') != 'Yes':
                 continue
             num = str(int(table.cell(i, 0).value)).replace('\n', '').replace('\r', '')
             api_purpose = table.cell(i, 1).value.replace('\n', '').replace('\r', '')
@@ -36,23 +37,18 @@ class ExcelDeal:
             request_data = table.cell(i, 6).value.replace('\n', '').replace('\r', '')
             encryption = table.cell(i, 7).value.replace('\n', '').replace('\r', '')
             check_point = table.cell(i, 8).value.replace('\n', '').replace('\r', '')
-            # correlation = table.cell(i,9).value.replace('\n','').replace('\r','').split(';')
+            test_describe = table.cell(i, 9).value.replace('\n', '').replace('\r', '')
+            # correlation = table.cell(i,10).value.replace('\n','').replace('\r','').split(';')
 
-            ifd = InterfaceDeal()
-            status = resp = ''
             if encryption == 'MD5':  # 如果数据采用md5加密，便先将数据加密,这里加密的密码需要跟不同接口的session有关系
                 request_data = json.loads(request_data)
                 request_data['pwd'] = hashlib.md5().update(request_data['pwd']).hexdigest()
-                status, resp = ifd.interface_test(num, api_purpose, api_host, request_url, request_method,
-                                                  request_data_type, request_data, check_point)
+
             elif encryption == 'DES':  # 数据采用des加密
                 k = des('secretKEY', padmode=PAD_PKCS5)
-                des_password = base64.b64encode(k.encrypt(json.dumps(pwd)))
-                status, resp = ifd.interface_test(num, api_purpose, api_host, request_url, request_method,
-                                                  request_data_type, des_password, check_point)
-
-            if status != 200:  # 如果状态码不为200,那么证明接口产生错误,保存错误信息。
-                error_case.append((num + '、' + api_purpose, str(status) + api_host + request_url, resp))
-                continue
-        return error_case
+                request_data = base64.b64encode(k.encrypt(json.dumps(pwd)))
+            param_list = [num, api_purpose, api_host, request_url, request_method, request_data_type, request_data,
+                          encryption, check_point, test_describe]
+            all_list.append(param_list)
+        return all_list
 

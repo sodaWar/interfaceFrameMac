@@ -5,20 +5,24 @@ import json
 
 
 class InterfaceHeadDeal:
+    @ staticmethod
     def unicode2str(u):
         return u if isinstance(u, str) else u.encode('utf8')
 
-    def get_millis(self):
+    @ staticmethod
+    def get_millis():
         # 同Java System.currentTimeMillis()方法
         return str(int(round(time.time() * 1000)))
 
+    @ staticmethod
     def get_md5hex(source):
         # 同Java md5Hex()方法
         m = hashlib.md5()
         m.update(source)
         return m.hexdigest()
 
-    def sign_headers(payload,request_data_type):
+    @ staticmethod
+    def sign_headers(payload, request_data_type):
         access_key = '7ef9a26e5a32ca9699b930541875dbfb'
         secret_key = '8040c5dbf6978f315e104e5c0bca3e8e2baa4221'
         req_time = InterfaceHeadDeal().get_millis()

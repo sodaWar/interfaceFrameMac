@@ -1,71 +1,73 @@
 # -* encoding:utf-8 *-
 import redis
 from pymongo import MongoClient
-import sys
-sys.path.append('E:\MyProgram\InterfaceTestFrame\Config')
 from Config.read_config import DealCommonCfg
 
 
 class RedisDeal:
     dcc = DealCommonCfg()
-    mylist = dcc.read_config('redis')  # 获得配置文件中的信息内容
-    mydic = {}  # 将获得的内容转换为字典类型
-    for i in mylist:
-        mydic[i[0].encode('UTF-8')] = i[1].encode('UTF-8')  # 这里将获得的数据由unicode类型转换为str类型,然后存入字典中
-    host = mydic['host']
-    password = mydic['password']
-    port = int(mydic['port'])
+    my_list = dcc.read_config('redis')  # 获得配置文件中的信息内容
+    my_dic = {}  # 将获得的内容转换为字典类型
+    for i in my_list:
+        my_dic[i[0].encode('UTF-8')] = i[1].encode('UTF-8')  # 这里将获得的数据由unicode类型转换为str类型,然后存入字典中
+    host = my_dic['host']
+    password = my_dic['password']
+    port = int(my_dic['port'])
 
-    def conndb(self):
+    def conn_db(self):
         print ("正在连接redis服务器....")
         r = redis.Redis(host=self.host,port=self.port)
         print ("连接服务器成功")
         return r
 
-    def operate(self,*dim):                                 # 这里可变参数dim至少有2个值,第一个是操作类型如set、get等,第二个是name值,第三个是value值可不传
-        r = RedisDeal().conndb()
-        list = []
+    @ staticmethod
+    def operate(*dim):                                      # 这里可变参数dim至少有2个值,第一个是操作类型如set、get等,第二个是name值,第三个是value值可不传
+        r = RedisDeal().conn_db()
+        list_one = []
         for i in dim:
-            list.append(i)
+            list_one.append(i)
 
-        if list[0] == 'set':
-            r.set(name=list[1],value=list[2])
-        elif list[0] == 'delete':
-            r.delete(list[1])
-        elif list[0] == 'get':
-            return r.get(name=list[1])
+        if list_one[0] == 'set':
+            r.set(name=list_one[1],value=list_one[2])
+        elif list_one[0] == 'delete':
+            r.delete(list_one[1])
+        elif list_one[0] == 'get':
+            return r.get(name=list_one[1])
         else:
             print('操作类型或key值错误')
 
-    def closedb(self):
-        r = RedisDeal().conndb()
+    @ staticmethod
+    def close_db():
+        r = RedisDeal().conn_db()
         r.connection_pool.disconnect()
 
 
 class MongodbDeal:
     dcc = DealCommonCfg()
-    mylist = dcc.read_config('mongodb')                          # 获得配置文件中的信息内容
-    mydic = {}                                                  # 将获得的内容转换为字典类型
-    for i in mylist:
-        mydic[i[0].encode('UTF-8')] = i[1].encode('UTF-8')      # 这里将获得的数据由unicode类型转换为str类型,然后存入字典中
-    host = mydic['host']
-    password = mydic['password']
-    port = int(mydic['port'])
-    user = mydic['user']
+    my_list = dcc.read_config('mongodb')                          # 获得配置文件中的信息内容
+    my_dic = {}                                                  # 将获得的内容转换为字典类型
+    for i in my_list:
+        my_dic[i[0].encode('UTF-8')] = i[1].encode('UTF-8')      # 这里将获得的数据由unicode类型转换为str类型,然后存入字典中
+    host = my_dic['host']
+    password = my_dic['password']
+    port = int(my_dic['port'])
+    user = my_dic['user']
 
-    def conndb(self,db,collection):
+    def conn_db(self,db,collection):
         print ("正在连接mongodb服务器....")
-        client=MongoClient(self.host,self.port)                 # 建立与数据库系统的连接
+        client = MongoClient(self.host,self.port)                 # 建立与数据库系统的连接
 
         db = client[db]                                         # 连接数据库
         db.authenticate(self.user, self.password)               # 认证用户密码
         collection = db[collection]
         print ("连接服务器成功")
-        return db,collection
+        return db, collection
 
-    def operate(self,handle,statement):                 # 这里statement格式的示例如{'id': '20190410','name': 'Jordan','age': 26,'gender': 'male'}
+    @ staticmethod
+    # 这里statement格式的示例如{'id': '20190410','name': 'Jordan','age': 26,'gender': 'male'}
+    def operate(handle, statement):
         md = MongodbDeal()
-        db,collection = md.conndb('test_itf_one','test_itf_one')
+        db, collection = md.conn_db('test_itf_one', 'test_itf_one')
 
         if handle == 'insert':
             collection.insert_one(statement)            # 同时插入多条数据使用insert_many()方法,参数需要以列表形式传递
@@ -79,6 +81,6 @@ class MongodbDeal:
         else:
             print('操作类型或执行语句错误')
 
-    def closedb(self):
+    def close_db(self):
         client = MongoClient(self.host, self.port)      # 建立与数据库系统的连接
         client.close()
