@@ -1,6 +1,6 @@
 # -* encoding:utf-8 *-
-import traceback
 import pymysql
+from Logic.log_print import LogPrint
 from Config.read_config import DealCommonCfg
 
 
@@ -18,7 +18,7 @@ class MysqlDeal:
     db = my_dic['db']
 
     def conn_db(self):
-        print ("正在连接mysql服务器....")
+        LogPrint().info("----------------正在连接mysql服务器----------------")
         conn = pymysql.connect(  # 连接数据库，其实就是建立一个pymysql.connect()的实例对象conn，该对象有commit()、rollback()、cursor（）等属性
             host=self.host,
             user=self.user,
@@ -27,7 +27,7 @@ class MysqlDeal:
             charset=self.charset,
             db=self.db
         )
-        print ("连接服务器成功")
+        LogPrint().info("----------------连接服务器成功----------------")
         cur = conn.cursor()         # 通过游标（指针）cursor的方式操作数据库，该代码作用是得到当前指向数据库的指针
         return (conn, cur)
 
@@ -36,7 +36,7 @@ class MysqlDeal:
         cur.execute(sql)
         result = cur.fetchall()
         if len(result) == 0:
-            print ("查询结束,数据库无数据")
+            LogPrint().info("----------------查询结束,数据库无数据----------------")
         else:
             return result
 

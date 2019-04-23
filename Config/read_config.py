@@ -1,4 +1,5 @@
 # coding=utf-8
+from Logic.log_print import LogPrint
 import configparser
 import os
 
@@ -27,9 +28,11 @@ class DealCommonCfg:
         if args.__len__() > 1 :
             # 删除一个 section中的一个 item（以键值KEY为标识）
             conf.remove_option(args[0], args[1])
+            LogPrint().info("----------------删除配置文件中的item成功----------------")
         else:
             # 删除一个 section
             conf.remove_section(args[0])
+            LogPrint().info("----------------删除配置文件中的section成功----------------")
 
     def write_config(self, section):
         # 添加一个section
@@ -41,6 +44,7 @@ class DealCommonCfg:
         conf.set(section, "port", "265")
 
         conf.write(open(self.cfg_path, "a"))                                    # 追加模式写入
+        LogPrint().info("----------------写入配置文件成功----------------")
 
     def set_config(self, section, key, value):
         conf = self.conf
@@ -51,5 +55,6 @@ class DealCommonCfg:
         conf.set(section, key, value)
 
         conf.write(open(self.cfg_path, "r+"))                                    # r+模式
+        LogPrint().info("----------------修改配置文件成功----------------")
 
 

@@ -20,10 +20,7 @@ class HtmlReport:
         self.case_total = 0                   # 运行测试用例总数
 
     # 生成HTML报告
-    def generate_html(self,head, file):
-            md = MysqlDeal()
-            conn, cur = md.conn_db()
-
+    def generate_html(self, md, conn, cur, head, file, start_time, end_time):
             page = PyH(self.title)
             page << h1(head, align='center') # 标题居中
             # 该标签很重要,用于防止中文乱码,生成的js文件中中文正常显示,但写入是以utf-8编码写入,浏览器解释js源码默认是以gbk形式来渲染网页的,所以显示在网页会乱码,该标签就是告诉浏览器用UTF-8来渲染页面
@@ -31,7 +28,7 @@ class HtmlReport:
 
             result_five = md.select_db(cur, HtmlReport.sql_statement('time_consuming'))
             self.time_consuming = str(result_five[0][0])
-            page << p('测试总耗时：' + self.time_consuming)
+            page << p('测试总耗时：' + self.time_consuming + 's')
 
             # 查询测试用例总数
             result_one = md.select_db(cur,HtmlReport.sql_statement('case_total'))
@@ -65,9 +62,11 @@ class HtmlReport:
                        + td('测试描述', bgcolor='#ABABAB', align='center', style='height:70px'))
 
             # 查询所有测试结果并记录到html文档
-            query = ('SELECT case_id, request_method, request_data_type, interface_name,url,'
-                     'request_data, assert_fail_reason,test_describe FROM test_problem_case')
-            query_result = md.select_db(cur,query)
+            query = ('SELECT case_id, request_method, request_data_type, interface_name, url,'
+                     ' request_data, assert_fail_reason, test_describe FROM test_problem_case'
+                     ' where create_time > %s and create_time < %s') % \
+                    ("\'" + str(start_time) + "\'", "\'" + str(end_time) + "\'")
+            query_result = md.select_db(cur, query)
 
             for row in query_result:
                 tab1 << tr(td(row[0], align='center') + td(row[1]) +

@@ -1,6 +1,7 @@
 # -* encoding:utf-8 *-
 import redis
 from pymongo import MongoClient
+from Logic.log_print import LogPrint
 from Config.read_config import DealCommonCfg
 
 
@@ -15,9 +16,9 @@ class RedisDeal:
     port = int(my_dic['port'])
 
     def conn_db(self):
-        print ("正在连接redis服务器....")
+        LogPrint().info("----------------正在连接redis服务器----------------")
         r = redis.Redis(host=self.host,port=self.port)
-        print ("连接服务器成功")
+        LogPrint().info("----------------连接服务器成功----------------")
         return r
 
     @ staticmethod
@@ -34,7 +35,7 @@ class RedisDeal:
         elif list_one[0] == 'get':
             return r.get(name=list_one[1])
         else:
-            print('操作类型或key值错误')
+            LogPrint().info("----------------操作类型或key值错误----------------")
 
     @ staticmethod
     def close_db():
@@ -54,13 +55,13 @@ class MongodbDeal:
     user = my_dic['user']
 
     def conn_db(self,db,collection):
-        print ("正在连接mongodb服务器....")
+        LogPrint().info("----------------正在连接mongo服务器----------------")
         client = MongoClient(self.host,self.port)                 # 建立与数据库系统的连接
 
         db = client[db]                                         # 连接数据库
         db.authenticate(self.user, self.password)               # 认证用户密码
         collection = db[collection]
-        print ("连接服务器成功")
+        LogPrint().info("----------------连接服务器成功----------------")
         return db, collection
 
     @ staticmethod
@@ -79,7 +80,7 @@ class MongodbDeal:
         elif handle == 'update':
             collection.update(statement)
         else:
-            print('操作类型或执行语句错误')
+            LogPrint().info("----------------操作类型或执行语句错误----------------")
 
     def close_db(self):
         client = MongoClient(self.host, self.port)      # 建立与数据库系统的连接

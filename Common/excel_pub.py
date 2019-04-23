@@ -16,7 +16,7 @@ class ExcelDeal:
         case = os.path.join(os.getcwd(),case)
         if not os.path.exists(case):
             lp = LogPrint()
-            lp.error('测试用例文件不存在！')
+            lp.error('----------------测试用例文件不存在!!----------------')
             sys.exit()
         test_case = xlrd.open_workbook(case)  # 打开文件
         table = test_case.sheet_by_index(0)  # 根据shell索引获取sheet内容
