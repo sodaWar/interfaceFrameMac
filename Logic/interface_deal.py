@@ -30,6 +30,7 @@ class InterfaceDeal:
         self.request_data = request_data                        # 请求数据
         self.check_point = check_point                          # 断言内容
         self.test_describe = test_describe                      # 测试描述
+        # self.relevance_case = relevance_case                    # 关联用例
 
     # 接口调用函数
     def interface_test(self):
@@ -54,6 +55,8 @@ class InterfaceDeal:
         try:
             response = ''
             if self.request_data_type == "Data":
+                # 从这里开始思考怎么写！！
+                # 这里开始判断接口请求时,如果这个接口中的关联接口字段relevance_case有值,那么就需要将请求参数的某个字段赋值为关联接口的相关字段值,对request_data字段值再做处理
                 response = requests.post(url=url, data=payload, headers=headers, timeout=5)
             elif self.request_data_type == 'Form':  # 以form形式发送post请求,只需将请求的参数构造成一个字典,传入给request.post()的data参数即可
                 response = requests.post(url=url, data=data, timeout=5)
@@ -73,7 +76,7 @@ class InterfaceDeal:
         url = self.api_host + self.request_url
         LogPrint().info('----------------开始调用接口----------------：' + url)
         try:
-            response = requests.get(url=self.request_url, params=self.request_data, timeout=5)
+            response = requests.get(url=url, params=self.request_data, timeout=5)
             status = response.status_code
             resp1 = response.text
             resp2 = resp1.encode("utf-8")
@@ -96,13 +99,15 @@ class InterfaceDeal:
         # request_data = '''
         return self.request_data_type
 
-    # 公共函数
+    # 公共函数,主要用于结果判断和处理
     def common_code_one(self, status, resp2):
-        sql = self.sql_deal_one()
+        sql = self.sql_deal_one('fail')
         if status == 200:
             LogPrint().info('----------------返回结果成功----------------：' + resp2)
             if self.check_point in resp2:
                 LogPrint().info('----------------测试断言结果----------------：' + '第' + str(self.num) + '个测试用例断言：通过')
+                sql = self.sql_deal_one('success')
+                self.md.other_operate_db(self.conn, self.cur, sql)
                 global_temp = 'success'
             else:
                 LogPrint().info('----------------测试断言结果----------------：' + '第' + str(self.num) + '个测试用例断言：失败')
@@ -121,14 +126,14 @@ class InterfaceDeal:
                          '个测试用例的接口请求超时响应,请注意!! [ ' + url + ' ]')
         global_temp = 'error'
         # 测试结果失败的用例信息存入数据库
-        sql = self.sql_deal_one()
+        sql = self.sql_deal_one('fail')
         self.md.other_operate_db(self.conn, self.cur, sql)
 
         mail_title = '接口响应超时: ' + self.api_purpose + ':' + url
         MailSend().overtime_warn(mail_title)
         return global_temp
 
-    def sql_deal_one(self):
+    def sql_deal_one(self, result):
         url = self.api_host + self.request_url
 
         create_time = datetime.datetime.now()
@@ -145,12 +150,20 @@ class InterfaceDeal:
             my_three = "\'" + str(self.request_data) + "\'"
 
         # 这里需要将参数都加上''符号,不然在sql语句中不是string类型,如请求方法时post,在sql中需要变为'post'才正确
-        sql = "insert into test_problem_case(case_id,request_method,request_data_type,interface_name,url," \
-              "request_data,assert_fail_reason,create_time,test_describe) " \
-              "values(%d,%s,%s,%s,%s,%s,%s,%s,%s)" % \
-              (int(self.num), "\'" + self.request_method + "\'", "\'" + self.request_data_type + "\'", "\'" +
-               self.api_purpose + "\'", "\'" + url + "\'", my_two, my_three,
-               "\'" + str(create_time) + "\'", "\'" + self.test_describe + "\'")
-        return sql
-
+        if result != 'success':
+            sql_one = "insert into test_problem_case(case_id,request_method,request_data_type,interface_name,url," \
+                  "request_data,assert_fail_reason,create_time,test_describe) " \
+                  "values(%d,%s,%s,%s,%s,%s,%s,%s,%s)" % \
+                  (int(self.num), "\'" + self.request_method + "\'", "\'" + self.request_data_type + "\'", "\'" +
+                   self.api_purpose + "\'", "\'" + url + "\'", my_two, my_three,
+                   "\'" + str(create_time) + "\'", "\'" + self.test_describe + "\'")
+            return sql_one
+        else:
+            sql_two = "insert into test_success_case(case_id,request_method,request_data_type,interface_name,url," \
+                  "request_data,assert_fail_reason,create_time,test_describe) " \
+                  "values(%d,%s,%s,%s,%s,%s,%s,%s,%s)" % \
+                  (int(self.num), "\'" + self.request_method + "\'", "\'" + self.request_data_type + "\'", "\'" +
+                   self.api_purpose + "\'", "\'" + url + "\'", my_two, my_three,
+                   "\'" + str(create_time) + "\'", "\'" + self.test_describe + "\'")
+            return sql_two
 

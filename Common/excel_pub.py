@@ -26,7 +26,8 @@ class ExcelDeal:
 
         for i in range(1, table.nrows):  # 循环行列表数据,table.nrows是获取行数
             # table.cell().value获取某个单元格的内容值,该方法第一个参数是行数,第二个参数是列数
-            if table.cell(i, 10).value.replace('\n', '').replace('\r','') != 'Yes':
+            # 这里判断测试用例的active是否是活跃的,活跃的代表可测试,不活跃的代表不测试,所以添加的时候需要选择用例是否活跃
+            if table.cell(i, 10).value.replace('\n', '').replace('\r', '') != 'Yes':
                 continue
             num = str(int(table.cell(i, 0).value)).replace('\n', '').replace('\r', '')
             api_purpose = table.cell(i, 1).value.replace('\n', '').replace('\r', '')

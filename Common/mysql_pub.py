@@ -37,6 +37,7 @@ class MysqlDeal:
         result = cur.fetchall()
         if len(result) == 0:
             LogPrint().info("----------------查询结束,数据库无数据----------------")
+            return 0
         else:
             return result
 

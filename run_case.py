@@ -1,5 +1,6 @@
 # coding=utf-8
 import datetime
+import time
 from Common.excel_pub import ExcelDeal
 from Logic.mail_send import MailSend
 from Logic.html_report import HtmlReport
@@ -17,7 +18,7 @@ class RunTest:
         param_list = ['num', 'api_purpose', 'api_host', 'request_url', 'request_method', 'request_data_type',
                       'request_data', 'encryption', 'check_point', 'test_describe']
         LogPrint().info("----------------开始读取excel中的测试用例----------------")
-        all_list = ExcelDeal().get_test('E:\\MyProgram\\InterfaceTestFrame\\APICase\\TestCase.xlsx')
+        all_list = ExcelDeal().get_test('E:\\MyProgram\\InterfaceTestFrame\\APICase\\TestCase2.xlsx')
         for i in all_list:
             me = dict(zip(param_list, i))
             my_list.append(me)
@@ -28,7 +29,7 @@ class RunTest:
         md = MysqlDeal()
         conn, cur = md.conn_db()
         md.other_operate_db(conn, cur, sql_one)
-        sql_two = 'select result_id from test_result_data where case_total = 0'
+        sql_two = 'select result_id from test_result_data order by create_time desc limit 1'
         result_one = md.select_db(cur, sql_two)
         result_id = result_one[0][0]
 
@@ -54,8 +55,9 @@ class RunTest:
                 print 'wait!!'
 
         # 将测试用例执行时间存入到数据库中
+        time.sleep(0.5)
         end_time = datetime.datetime.now()
-        Common_Method.test_time_deal(md, conn, cur, start_time, end_time, result_id)
+        start_time, end_time = Common_Method.test_time_deal(md, conn, cur, start_time, end_time, result_id)
 
         LogPrint().info("----------------生成测试报告----------------")
         filename = HtmlReport().generate_html(md, conn, cur, 'test report',
