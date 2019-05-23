@@ -13,7 +13,7 @@ class ExcelDeal:
     @ staticmethod
     def get_test(case):
         # join()函数是连接字符串数组,os.path.join()函数是将多个路径组合后返回,os.getcwd()是返回当前进程的工作目录,testcase是测试用例文件的目录地址
-        case = os.path.join(os.getcwd(),case)
+        case = os.path.join(os.getcwd(), case)
         if not os.path.exists(case):
             lp = LogPrint()
             lp.error('----------------测试用例文件不存在!!----------------')

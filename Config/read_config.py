@@ -13,8 +13,8 @@ class DealCommonCfg:
     def read_config(self, section):
         conf = self.conf
         # 读ini文件
-        # conf.read(cfgpath, encoding="utf-8")  # python3
-        conf.read(self.cfg_path)  # python2
+        conf.read(self.cfg_path, encoding="utf-8")  # python3
+        # conf.read(self.cfg_path)  # python2
         # 获取所有的section
         # sections = conf.sections()                                         # 返回list
         # print sections

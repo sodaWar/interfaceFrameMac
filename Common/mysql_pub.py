@@ -9,7 +9,7 @@ class MysqlDeal:
     my_list = dcc.read_config('mysql')  # 获得配置文件中的信息内容
     my_dic = {}  # 将获得的内容转换为字典类型
     for i in my_list:
-        my_dic[i[0].encode('UTF-8')] = i[1].encode('UTF-8')  # 这里将获得的数据由unicode类型转换为str类型,然后存入字典中
+        my_dic[i[0]] = i[1]
     host = my_dic['host']
     user = my_dic['user']
     password = my_dic['password']

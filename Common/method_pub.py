@@ -32,3 +32,4 @@ class Common_Method:
             sql_two = 'update test_result_data set %s = %d,case_total = %d where result_id = %d' \
                       % (field, filed_num + 1, case_total + 1, result_id)
             md.other_operate_db(conn, cur, sql_two)
+

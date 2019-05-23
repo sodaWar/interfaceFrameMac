@@ -18,7 +18,7 @@ class RunTest:
         param_list = ['num', 'api_purpose', 'api_host', 'request_url', 'request_method', 'request_data_type',
                       'request_data', 'encryption', 'check_point', 'test_describe']
         LogPrint().info("----------------开始读取excel中的测试用例----------------")
-        all_list = ExcelDeal().get_test('E:\\MyProgram\\InterfaceTestFrame\\APICase\\TestCase2.xlsx')
+        all_list = ExcelDeal().get_test('/Users/hongnaiwu/MyProject/InterfaceFrame/APICase/TestCase.xlsx')
         for i in all_list:
             me = dict(zip(param_list, i))
             my_list.append(me)
@@ -52,7 +52,7 @@ class RunTest:
             elif result_temp == 'error':
                 Common_Method.sql_deal_two(md, conn, cur, 'error_num', result_id)
             else:
-                print 'wait!!'
+                print('wait!!')
 
         # 将测试用例执行时间存入到数据库中
         time.sleep(0.5)
@@ -60,16 +60,16 @@ class RunTest:
         start_time, end_time = Common_Method.test_time_deal(md, conn, cur, start_time, end_time, result_id)
 
         LogPrint().info("----------------生成测试报告----------------")
-        filename = HtmlReport().generate_html(md, conn, cur, 'test report',
-                                              'E:\\MyProgram\\InterfaceTestFrame\\Report\\report.html',
-                                              start_time, end_time)
+        # filename = HtmlReport().generate_html(md, conn, cur, 'test report',
+        #                                       'E:\\MyProgram\\InterfaceTestFrame\\Report\\report.html',
+        #                                       start_time, end_time)
 
         # 这里'r'读模式,'w'写模式,'a'追加模式,'b'二进制模式,'+'读/写模式
-        fo = open(filename, "r+")
-        text = fo.read()
-        ms = MailSend()
+        # fo = open(filename, "r+")
+        # text = fo.read()
+        # ms = MailSend()
         # 发送测试报告
-        ms.send_mail(text)
+        # ms.send_mail(text)
 
 
 if __name__ == '__main__':

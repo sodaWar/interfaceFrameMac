@@ -4,8 +4,8 @@ from pyh2 import *
 import time
 import os
 import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
+import importlib
+importlib.reload(sys)
 
 
 class HtmlReport:
@@ -63,7 +63,7 @@ class HtmlReport:
                        + td('测试结果', bgcolor='#A9CCE3', align='center', style='height:70px'))
 
             # 查询所有测试失败的结果
-            query = self.sql_statement_two('test_problem_case', start_time, end_time)
+            query = self.sql_statement_two(0, start_time, end_time)
             query_result = md.select_db(cur, query)
             if query_result != 0:
                 for row in query_result:
@@ -72,7 +72,7 @@ class HtmlReport:
                                td(row[4]) + td(row[5]) + td(row[6]) + td(row[7]) + td('失败'))
 
             # 查询所有测试成功的结果,并记录到html文档
-            query_two = self.sql_statement_two('test_success_case', start_time, end_time)
+            query_two = self.sql_statement_two(1, start_time, end_time)
             query_result_two = md.select_db(cur, query_two)
 
             if query_result_two != 0:
@@ -106,10 +106,9 @@ class HtmlReport:
         return sql
 
     @ staticmethod
-    def sql_statement_two(table_name, start_time, end_time):
-        query = ('SELECT case_id, request_method, request_data_type, interface_name, url,'
-                 ' request_data, assert_fail_reason, test_describe FROM %s'
-                 ' where create_time >= %s and create_time <= %s') % \
-                (table_name, "\'" + str(start_time) + "\'", "\'" + str(end_time) + "\'")
+    def sql_statement_two(status, start_time, end_time):
+        query = ('SELECT * FROM test_case  where status = %d and create_time >= %s '
+                 'and create_time <= %s') % \
+                (status, "\'" + str(start_time) + "\'", "\'" + str(end_time) + "\'")
         return query
 

@@ -10,7 +10,8 @@ class RedisDeal:
     my_list = dcc.read_config('redis')  # 获得配置文件中的信息内容
     my_dic = {}  # 将获得的内容转换为字典类型
     for i in my_list:
-        my_dic[i[0].encode('UTF-8')] = i[1].encode('UTF-8')  # 这里将获得的数据由unicode类型转换为str类型,然后存入字典中
+        my_dic[i[0]] = i[1]                                    # python3的写法,以下是python2的写法
+        # my_dic[i[0].encode('UTF-8')] = i[1].encode('UTF-8')  # 这里将获得的数据由unicode类型转换为str类型,然后存入字典中
     host = my_dic['host']
     password = my_dic['password']
     port = int(my_dic['port'])
@@ -48,7 +49,8 @@ class MongodbDeal:
     my_list = dcc.read_config('mongodb')                          # 获得配置文件中的信息内容
     my_dic = {}                                                  # 将获得的内容转换为字典类型
     for i in my_list:
-        my_dic[i[0].encode('UTF-8')] = i[1].encode('UTF-8')      # 这里将获得的数据由unicode类型转换为str类型,然后存入字典中
+        my_dic[i[0]] = i[1]
+        # my_dic[i[0].encode('UTF-8')] = i[1].encode('UTF-8')      # 这里将获得的数据由unicode类型转换为str类型,然后存入字典中
     host = my_dic['host']
     password = my_dic['password']
     port = int(my_dic['port'])

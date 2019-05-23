@@ -9,9 +9,8 @@ import datetime
 import os
 from pyDes import *
 from requests.exceptions import Timeout
-reload(sys)
-# 编码转换,转换之后默认编码格式是utf8,详细见笔记
-sys.setdefaultencoding('utf8')
+import importlib
+importlib.reload(sys)
 
 
 class InterfaceDeal:
@@ -43,7 +42,7 @@ class InterfaceDeal:
         elif self.request_data_type == 'File':
             self.request_type_file()
         else:
-            print ''
+            print('')
 
     def post_deal(self):
         data = eval(self.request_data)  # 将str类型转换成字典类型
@@ -151,19 +150,19 @@ class InterfaceDeal:
 
         # 这里需要将参数都加上''符号,不然在sql语句中不是string类型,如请求方法时post,在sql中需要变为'post'才正确
         if result != 'success':
-            sql_one = "insert into test_problem_case(case_id,request_method,request_data_type,interface_name,url," \
-                  "request_data,assert_fail_reason,create_time,test_describe) " \
-                  "values(%d,%s,%s,%s,%s,%s,%s,%s,%s)" % \
+            sql_one = "insert into test_case(case_id,request_method,request_data_type,interface_name,url," \
+                  "request_data,assert_fail_reason,create_time,test_describe,status) " \
+                  "values(%d,%s,%s,%s,%s,%s,%s,%s,%s,%d)" % \
                   (int(self.num), "\'" + self.request_method + "\'", "\'" + self.request_data_type + "\'", "\'" +
                    self.api_purpose + "\'", "\'" + url + "\'", my_two, my_three,
-                   "\'" + str(create_time) + "\'", "\'" + self.test_describe + "\'")
+                   "\'" + str(create_time) + "\'", "\'" + self.test_describe + "\'", 0)
             return sql_one
         else:
-            sql_two = "insert into test_success_case(case_id,request_method,request_data_type,interface_name,url," \
-                  "request_data,assert_fail_reason,create_time,test_describe) " \
-                  "values(%d,%s,%s,%s,%s,%s,%s,%s,%s)" % \
+            sql_two = "insert into test_case(case_id,request_method,request_data_type,interface_name,url," \
+                  "request_data,assert_fail_reason,create_time,test_describe,status) " \
+                  "values(%d,%s,%s,%s,%s,%s,%s,%s,%s,%d)" % \
                   (int(self.num), "\'" + self.request_method + "\'", "\'" + self.request_data_type + "\'", "\'" +
                    self.api_purpose + "\'", "\'" + url + "\'", my_two, my_three,
-                   "\'" + str(create_time) + "\'", "\'" + self.test_describe + "\'")
+                   "\'" + str(create_time) + "\'", "\'" + self.test_describe + "\'", 1)
             return sql_two
 

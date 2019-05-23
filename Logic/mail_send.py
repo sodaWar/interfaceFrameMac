@@ -13,7 +13,8 @@ class MailSend:
     my_list = dcc.read_config('email_qq')                                                # 获得配置文件中的信息内容
     my_dic = {}                                                                          # 将获得的内容转换为字典类型
     for i in my_list:
-        my_dic[i[0].encode('UTF-8')] = i[1].encode('UTF-8')
+        my_dic[i[0]] = i[1]                                                              # python3的写法,下面是python2的写法
+        # my_dic[i[0].encode('UTF-8')] = i[1].encode('UTF-8')
     smtp_server = my_dic['smtp_server']                                                  # QQ的SMTP服务器地址
     sender_qq_adr = my_dic['sender_qq_adr']                                              # 发送人的邮箱地址
     password = my_dic['password']                                                        # QQ邮箱的授权码
