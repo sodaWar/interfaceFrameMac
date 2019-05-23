@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="51ed7632-4463-41e7-a4a0-f4c88d0340ec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/InterfaceTestFrame.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/InterfaceTestFrame.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/excel_pub.py" beforeDir="false" afterPath="$PROJECT_DIR$/Common/excel_pub.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/method_pub.py" beforeDir="false" afterPath="$PROJECT_DIR$/Common/method_pub.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/mysql_pub.py" beforeDir="false" afterPath="$PROJECT_DIR$/Common/mysql_pub.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/redis_mongo_pub.py" beforeDir="false" afterPath="$PROJECT_DIR$/Common/redis_mongo_pub.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/read_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/Config/read_config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic/html_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/html_report.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic/interface_deal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/interface_deal.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic/mail_send.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/mail_send.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic/test1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/test1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_case.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_case.py" afterDir="false" />
-    </list>
+    <list default="true" id="51ed7632-4463-41e7-a4a0-f4c88d0340ec" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +9,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/InterfaceFrame$test1.coverage" NAME="test1 Coverage Results" MODIFIED="1558609769541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Logic" />
+    <SUITE FILE_PATH="coverage/InterfaceFrame$test1.coverage" NAME="test1 Coverage Results" MODIFIED="1558615017672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Logic" />
     <SUITE FILE_PATH="coverage/InterfaceFrame$mysql_pub.coverage" NAME="mysql_pub Coverage Results" MODIFIED="1558592497305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Common" />
     <SUITE FILE_PATH="coverage/InterfaceFrame$test.coverage" NAME="test Coverage Results" MODIFIED="1558511872014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Logic" />
     <SUITE FILE_PATH="coverage/InterfaceFrame$html_report.coverage" NAME="html_report Coverage Results" MODIFIED="1558583071559" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Logic" />
@@ -227,7 +212,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.run_case">
+  <component name="RunManager" selected="Python.test1">
     <configuration name="html_report" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="InterfaceTestFrame" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -340,8 +325,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.run_case" />
         <item itemvalue="Python.test1" />
+        <item itemvalue="Python.run_case" />
         <item itemvalue="Python.mysql_pub" />
         <item itemvalue="Python.html_report" />
         <item itemvalue="Python.test" />
@@ -364,12 +349,12 @@
       <workItem from="1558419269151" duration="689000" />
       <workItem from="1558430205674" duration="70000" />
       <workItem from="1558509995347" duration="2041000" />
-      <workItem from="1558513043393" duration="13729000" />
+      <workItem from="1558513043393" duration="13972000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16731000" />
+    <option name="totallyTimeSpent" value="16974000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
