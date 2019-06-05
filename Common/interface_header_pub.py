@@ -18,7 +18,7 @@ class InterfaceHeadDeal:
     def get_md5hex(source):
         # 同Java md5Hex()方法
         m = hashlib.md5()
-        m.update(source)
+        m.update(source.encode("utf8"))
         return m.hexdigest()
 
     @ staticmethod

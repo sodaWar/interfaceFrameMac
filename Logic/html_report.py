@@ -65,21 +65,23 @@ class HtmlReport:
             # 查询所有测试失败的结果
             query = self.sql_statement_two(0, start_time, end_time)
             query_result = md.select_db(cur, query)
+            # print(query_result)
             if query_result != 0:
                 for row in query_result:
-                    tab1 << tr(td(row[0], align='center') + td(row[1]) +
-                               td(row[2]) + td(row[3], align='center') +
-                               td(row[4]) + td(row[5]) + td(row[6]) + td(row[7]) + td('失败'))
+                    tab1 << tr(td(row[1], align='center') + td(row[2]) +
+                               td(row[3]) + td(row[4], align='center') +
+                               td(row[5]) + td(row[6]) + td(row[7]) + td(row[8]) + td('失败'))
 
             # 查询所有测试成功的结果,并记录到html文档
             query_two = self.sql_statement_two(1, start_time, end_time)
             query_result_two = md.select_db(cur, query_two)
+            # print(query_result_two)
 
             if query_result_two != 0:
                 for row in query_result_two:
-                    tab1 << tr(td(row[0], align='center') + td(row[1]) +
-                               td(row[2]) + td(row[3], align='center') +
-                               td(row[4]) + td(row[5]) + td(row[6]) + td(row[7]) + td('成功'))
+                    tab1 << tr(td(row[1], align='center') + td(row[2]) +
+                               td(row[3]) + td(row[4], align='center') +
+                               td(row[5]) + td(row[6]) + td(row[7]) + td(row[8]) + td('成功'))
 
             self._set_result_filename(file)
             page.printOut(self.filename)

@@ -18,7 +18,7 @@ class RedisDeal:
 
     def conn_db(self):
         LogPrint().info("----------------正在连接redis服务器----------------")
-        r = redis.Redis(host=self.host,port=self.port)
+        r = redis.Redis(host=self.host, port=self.port)
         LogPrint().info("----------------连接服务器成功----------------")
         return r
 
@@ -56,9 +56,9 @@ class MongodbDeal:
     port = int(my_dic['port'])
     user = my_dic['user']
 
-    def conn_db(self,db,collection):
+    def conn_db(self, db, collection):
         LogPrint().info("----------------正在连接mongo服务器----------------")
-        client = MongoClient(self.host,self.port)                 # 建立与数据库系统的连接
+        client = MongoClient(self.host, self.port)                 # 建立与数据库系统的连接
 
         db = client[db]                                         # 连接数据库
         db.authenticate(self.user, self.password)               # 认证用户密码

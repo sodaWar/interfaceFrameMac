@@ -1,20 +1,16 @@
-# # -*- coding:utf-8 -*-
-# # import requests
-# #
-# # payload = {"name": "hongnaiwu", "age": "26"}
-# #
-# # ret = requests.get(url='http://httpbin.org/get', params=payload, timeout=5)
-# #
-# # # ret = requests.get("http://httpbin.org/get", params=payload)
-# # print(ret.text)
-import os
-import time
-import datetime
-from Logic.test2 import generate_html
-from Common.mysql_pub import MysqlDeal
-import sys
+# # coding=utf-8
+from Logic.log_print import LogPrint
+from Common.excel_pub import ExcelDeal
+from pyDes import *
 import importlib
+# import json
+import traceback
+from Common.mysql_pub import MysqlDeal
+# from Common.method_pub import CommonMethod
+from Logic.interface_deal import InterfaceDeal
 importlib.reload(sys)
+import requests
+
 
 
 # start_time = datetime.datetime.now()
@@ -28,4 +24,8 @@ importlib.reload(sys)
 #            request_method='post', assert_fail_reason='code', json='code = 500', test_result='fail', exception_num=0,
 #            error_num=1)
 
-print(4)
+
+
+
+
+

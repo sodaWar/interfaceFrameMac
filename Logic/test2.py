@@ -68,7 +68,7 @@ case_content = '''
         </div>
         <div class="btn-group" role="group" aria-label="...">
         </div>
-        <table class="table table-hover table-condensed table-bordered" style="word-wrap:break-word; 
+        <table class="table table-hover table-condensed table-bordered" style="word-wrap:break-word;
         word-break:break-all; margin-top: 7px;">
         <tr>
             <td ><strong>用例ID&nbsp;</strong></td>

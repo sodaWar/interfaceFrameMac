@@ -27,7 +27,7 @@ class MysqlDeal:
             charset=self.charset,
             db=self.db
         )
-        LogPrint().info("----------------连接服务器成功----------------")
+        LogPrint().info("----------------连接mysql服务器成功----------------")
         cur = conn.cursor()         # 通过游标（指针）cursor的方式操作数据库，该代码作用是得到当前指向数据库的指针
         return (conn, cur)
 
