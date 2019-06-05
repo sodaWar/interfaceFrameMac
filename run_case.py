@@ -49,7 +49,7 @@ class RunTest:
 
         LogPrint().info("----------------生成测试报告----------------")
         filename = HtmlReport().generate_html(md, conn, cur, 'test report',
-                                              'E:\\MyProgram\\InterfaceTestFrame\\Report\\report.html',
+                                              '/Users/hongnaiwu/MyProject/InterfaceFrame/Report/report.html',
                                               start_time, end_time)
 
         # 这里'r'读模式,'w'写模式,'a'追加模式,'b'二进制模式,'+'读/写模式
