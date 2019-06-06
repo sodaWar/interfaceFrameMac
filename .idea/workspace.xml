@@ -1,25 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="51ed7632-4463-41e7-a4a0-f4c88d0340ec" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dc69974d-526b-4b08-9ed1-fcfe9d6956ce.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dc69974d-526b-4b08-9ed1-fcfe9d6956ce.xml" afterDir="false" />
+    <list default="true" id="51ed7632-4463-41e7-a4a0-f4c88d0340ec" name="Default Changelist" comment="日志文件路径修改">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APICase/TestCase.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/APICase/TestCase.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/excel_pub.py" beforeDir="false" afterPath="$PROJECT_DIR$/Common/excel_pub.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/interface_header_pub.py" beforeDir="false" afterPath="$PROJECT_DIR$/Common/interface_header_pub.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Common/method_pub.py" beforeDir="false" afterPath="$PROJECT_DIR$/Common/method_pub.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/mysql_pub.py" beforeDir="false" afterPath="$PROJECT_DIR$/Common/mysql_pub.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/redis_mongo_pub.py" beforeDir="false" afterPath="$PROJECT_DIR$/Common/redis_mongo_pub.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/cfg.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/cfg.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Log/2019_04_23.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Log/2019_04_24.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Log/2019_04_25.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Log/2019_04_26.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Log/2019_05_23.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic/html_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/html_report.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Log/2019_06_05.log" beforeDir="false" afterPath="$PROJECT_DIR$/Log/2019_06_05.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logic/interface_deal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/interface_deal.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logic/test1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/test1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic/test2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/test2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/report-20190423 18-30-03.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/report-20190425 18-06-26.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/report-20190426 19-39-12.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/report-20190426 19-45-49.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Report/report-20190426 19-49-24.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/run_case.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_case.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,13 +21,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/InterfaceFrame$test1.coverage" NAME="test1 Coverage Results" MODIFIED="1559700421851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Logic" />
+    <SUITE FILE_PATH="coverage/InterfaceFrame$test1.coverage" NAME="test1 Coverage Results" MODIFIED="1559791244618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Logic" />
     <SUITE FILE_PATH="coverage/InterfaceFrame$mysql_pub.coverage" NAME="mysql_pub Coverage Results" MODIFIED="1558592497305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Common" />
     <SUITE FILE_PATH="coverage/InterfaceFrame$test.coverage" NAME="test Coverage Results" MODIFIED="1558511872014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Logic" />
     <SUITE FILE_PATH="coverage/InterfaceFrame$interface_deal.coverage" NAME="interface_deal Coverage Results" MODIFIED="1559715640042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Logic" />
     <SUITE FILE_PATH="coverage/InterfaceFrame$test2.coverage" NAME="test2 Coverage Results" MODIFIED="1559619586648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Logic" />
     <SUITE FILE_PATH="coverage/InterfaceFrame$html_report.coverage" NAME="html_report Coverage Results" MODIFIED="1558583071559" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Logic" />
-    <SUITE FILE_PATH="coverage/InterfaceFrame$run_case.coverage" NAME="run_case Coverage Results" MODIFIED="1559738439987" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/InterfaceFrame$run_case.coverage" NAME="run_case Coverage Results" MODIFIED="1559791937413" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -72,8 +64,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Logic/test1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="420">
+              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
               <folding>
                 <element signature="e#17#53#0" expanded="true" />
               </folding>
@@ -84,8 +76,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Common/method_pub.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="997">
-              <caret line="84" column="8" selection-start-line="84" selection-start-column="8" selection-end-line="84" selection-end-column="8" />
+            <state relative-caret-position="-97">
+              <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
               <folding>
                 <element signature="e#15#30#0" expanded="true" />
               </folding>
@@ -96,8 +88,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/run_case.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-90">
-              <caret line="167" lean-forward="true" selection-start-line="167" selection-end-line="167" />
+            <state relative-caret-position="-200">
+              <caret line="130" column="53" selection-start-line="130" selection-start-column="53" selection-end-line="130" selection-end-column="53" />
               <folding>
                 <element signature="e#15#30#0" expanded="true" />
               </folding>
@@ -108,8 +100,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Logic/interface_deal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1995">
-              <caret line="156" column="60" lean-forward="true" selection-start-line="156" selection-start-column="60" selection-end-line="156" selection-end-column="60" />
+            <state relative-caret-position="321">
+              <caret line="90" column="38" selection-start-line="90" selection-start-column="38" selection-end-line="90" selection-end-column="38" />
               <folding>
                 <element signature="e#15#51#0" expanded="true" />
               </folding>
@@ -128,7 +120,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>like</find>
       <find>sql_one</find>
       <find>返回结果成功</find>
       <find>md =</find>
@@ -158,6 +149,7 @@
       <find>my_list</find>
       <find>result_id</find>
       <find>result_temp</find>
+      <find>所</find>
     </findStrings>
     <replaceStrings>
       <replace>items</replace>
@@ -190,9 +182,9 @@
         <option value="$PROJECT_DIR$/Common/mysql_pub.py" />
         <option value="$PROJECT_DIR$/Logic/test2.py" />
         <option value="$PROJECT_DIR$/Common/method_pub.py" />
+        <option value="$PROJECT_DIR$/run_case.py" />
         <option value="$PROJECT_DIR$/Logic/interface_deal.py" />
         <option value="$PROJECT_DIR$/Logic/test1.py" />
-        <option value="$PROJECT_DIR$/run_case.py" />
       </list>
     </option>
   </component>
@@ -232,12 +224,12 @@
             <path>
               <item name="InterfaceFrame" type="b2602c69:ProjectViewProjectNode" />
               <item name="InterfaceFrame" type="462c0819:PsiDirectoryNode" />
-              <item name="Log" type="462c0819:PsiDirectoryNode" />
+              <item name="Logic" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="InterfaceFrame" type="b2602c69:ProjectViewProjectNode" />
               <item name="InterfaceFrame" type="462c0819:PsiDirectoryNode" />
-              <item name="Logic" type="462c0819:PsiDirectoryNode" />
+              <item name="Report" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -379,8 +371,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.run_case" />
-        <item itemvalue="Python.interface_deal" />
         <item itemvalue="Python.test1" />
+        <item itemvalue="Python.interface_deal" />
         <item itemvalue="Python.test2" />
         <item itemvalue="Python.mysql_pub" />
       </list>
@@ -408,23 +400,46 @@
       <workItem from="1558940569881" duration="528000" />
       <workItem from="1558950930019" duration="329000" />
       <workItem from="1559112316089" duration="25285000" />
-      <workItem from="1559215572387" duration="68218000" />
+      <workItem from="1559215572387" duration="69120000" />
+      <workItem from="1559740343174" duration="6502000" />
     </task>
+    <task id="LOCAL-00001" summary="两个接口关联后的请求处理完毕">
+      <created>1559739469836</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1559739469836</updated>
+    </task>
+    <task id="LOCAL-00002" summary="两个接口关联后的请求处理完毕">
+      <created>1559739778896</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1559739778896</updated>
+    </task>
+    <task id="LOCAL-00003" summary="日志文件路径修改">
+      <created>1559740284764</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1559740284764</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122476000" />
+    <option name="totallyTimeSpent" value="129880000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="42" y="23" width="1398" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49936306" weight="0.13864307" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49936306" weight="0.1460177" />
       <window_info id="Structure" order="1" sideWeight="0.50063694" side_tool="true" weight="0.20028612" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2522293" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3299363" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2522293" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.30318472" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -443,12 +458,12 @@
       <window_info anchor="right" id="Database" order="4" weight="0.14664702" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49936306" weight="0.13864307" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49936306" visible="true" weight="0.22566372" />
       <window_info id="Structure" order="1" sideWeight="0.50063694" side_tool="true" weight="0.20028612" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2522293" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3299363" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2522293" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.30318472" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -470,11 +485,13 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="两个接口关联后的请求处理完毕" />
+    <MESSAGE value="日志文件路径修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="日志文件路径修改" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Logic/test.py" />
-    <entry file="file://$PROJECT_DIR$/Report/report-20190425 17-58-21.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/dc69974d-526b-4b08-9ed1-fcfe9d6956ce/console.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -541,29 +558,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Logic/html_report.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="81" selection-start-line="81" selection-end-line="81" />
-          <folding>
-            <element signature="e#45#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Log/2019_06_03.log">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-7641" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Logic/mail_send.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-262">
-          <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
-          <folding>
-            <element signature="e#15#43#0" expanded="true" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Logic/test2.py">
@@ -629,7 +626,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Config/read_config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
+        <state relative-caret-position="-242">
           <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
           <folding>
             <element signature="e#15#51#0" expanded="true" />
@@ -637,20 +634,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Logic/mail_send.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+          <folding>
+            <element signature="e#15#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Log/2019_06_05.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8558" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report/report-20190425 17-58-21.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Report/report-20190426 19-49-24.html" />
+    <entry file="file://$PROJECT_DIR$/Report/report-20190605 21-08-18.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logic/html_report.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+          <folding>
+            <element signature="e#45#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Logic/test1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="420">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
           <folding>
             <element signature="e#17#53#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Report/report-20190606 11-32-21.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Logic/interface_deal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1995">
-          <caret line="156" column="60" lean-forward="true" selection-start-line="156" selection-start-column="60" selection-end-line="156" selection-end-column="60" />
+        <state relative-caret-position="321">
+          <caret line="90" column="38" selection-start-line="90" selection-start-column="38" selection-end-line="90" selection-end-column="38" />
           <folding>
             <element signature="e#15#51#0" expanded="true" />
           </folding>
@@ -659,8 +691,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/run_case.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-90">
-          <caret line="167" lean-forward="true" selection-start-line="167" selection-end-line="167" />
+        <state relative-caret-position="-200">
+          <caret line="130" column="53" selection-start-line="130" selection-start-column="53" selection-end-line="130" selection-end-column="53" />
           <folding>
             <element signature="e#15#30#0" expanded="true" />
           </folding>
@@ -669,8 +701,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Common/method_pub.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="997">
-          <caret line="84" column="8" selection-start-line="84" selection-start-column="8" selection-end-line="84" selection-end-column="8" />
+        <state relative-caret-position="-97">
+          <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
           <folding>
             <element signature="e#15#30#0" expanded="true" />
           </folding>

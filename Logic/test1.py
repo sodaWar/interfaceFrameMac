@@ -3,7 +3,7 @@ from Logic.log_print import LogPrint
 from Common.excel_pub import ExcelDeal
 from pyDes import *
 import importlib
-# import json
+import json
 import traceback
 from Common.mysql_pub import MysqlDeal
 # from Common.method_pub import CommonMethod
@@ -23,9 +23,6 @@ import requests
 #            key="dwqweq1213", request_data="{'password' : '123456'}", url='www.baidu.com',
 #            request_method='post', assert_fail_reason='code', json='code = 500', test_result='fail', exception_num=0,
 #            error_num=1)
-
-
-
 
 
 

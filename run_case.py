@@ -75,15 +75,17 @@ class RunTest:
                     LogPrint().info("----------开始调用第" + test_case_list[x]['num'] + "个测试用例的接口----------")
                     # 先去执行被关联的测试用例
                     for y in range(len(test_case_list)):
-                        # 如果被关联的测试用例接口未执行过,那么就需要循环到所关联的接口,让它执行一次
+                        # 如果被关联的测试用例接口未执行过,那么就需要循环到被关联的接口,让它执行一次
                         if int(test_case_list[x]['relevance_case']) not in check_list:
-                            # 如果已循环到该未执行过的所关联的接口
+                            # 如果已循环到该未执行过的被关联的接口
                             if int(test_case_list[y]['num']) == int(test_case_list[x]['relevance_case']):
+                                # 先执行被关联的接口
                                 result_two = self.run_test2(test_case_list[x]['relevance_case'], result_id)
                                 LogPrint().info("----------继续调用第" + test_case_list[x]['num'] + "个测试用例的接口----------")
+                                # 执行完毕后将该用例的编号存入到检查列表中,防止再次执行
                                 check_list.append(int(test_case_list[x]['relevance_case']))
 
-                                # 处理请求接口的数据,将所关联的接口数据赋值给请求的接口数据中
+                                # 处理请求接口的数据,将被关联的接口数据赋值给请求的接口数据中
                                 request_data_last = CommonMethod.request_data_deal(test_case_list[x]['request_data'],
                                                                                    result_two)
                                 ifd = InterfaceDeal(test_case_list[x]['num'], test_case_list[x]['api_purpose'],
@@ -104,7 +106,7 @@ class RunTest:
 
                             # 如果未循环到该关联的接口
                             else:
-                                LogPrint().info('-----不是所关联的用例----')
+                                LogPrint().info('-----不是被关联的用例----')
                                 continue
 
                         # 如果被关联的接口已执行过,那么就不需要用到这里的for y 的循环了
@@ -119,7 +121,7 @@ class RunTest:
                                 result = md.select_db(cur, sql_two)
                                 result_two = result[0][0]
 
-                                # 处理请求接口的数据,将所关联的接口数据赋值给请求的接口数据中
+                                # 处理请求接口的数据,将被关联的接口数据赋值给请求的接口数据中
                                 request_data_last = CommonMethod.request_data_deal(test_case_list[x]['request_data'],
                                                                                    result_two)
                                 ifd = InterfaceDeal(test_case_list[x]['num'], test_case_list[x]['api_purpose'],
@@ -164,7 +166,7 @@ class RunTest:
             elif result_temp == 'error':
                 CommonMethod.sql_deal_two(md, conn, cur, 'error_num', result_id)
             else:
-                LogPrint().info("----------------所关联的测试用例结果已更新,无需再次更新----------------")
+                LogPrint().info("----------------被关联的测试用例结果已更新,无需再次更新----------------")
 
     def run_test2(self, relevance_case, result_id):
         test_case_list = self.test_case_list
@@ -173,7 +175,7 @@ class RunTest:
         cur = self.cur
         for x in range(len(test_case_list)):
             if int(test_case_list[x]['num']) == int(relevance_case):
-                LogPrint().info("----------先调用所关联的第" + str(relevance_case) + "个测试用例的接口----------")
+                LogPrint().info("----------先调用被关联的第" + str(relevance_case) + "个测试用例的接口----------")
 
                 ifd = InterfaceDeal(test_case_list[x]['num'], test_case_list[x]['api_purpose'],
                                     test_case_list[x]['request_url'], test_case_list[x]['request_method'],

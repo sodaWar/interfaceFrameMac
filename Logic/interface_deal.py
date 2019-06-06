@@ -88,7 +88,7 @@ class InterfaceDeal:
 
     def get_deal(self):
         url = self.api_host + self.request_url
-        LogPrint().info('-------------开始调用第' + self.num + '个测试用例的接口-------------：' + url)
+        LogPrint().info('-------------调用第' + self.num + '个测试用例的接口-------------：' + url)
         try:
             response = requests.get(url=url, params=self.request_data, timeout=5)
             status = response.status_code
