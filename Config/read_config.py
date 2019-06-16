@@ -16,10 +16,10 @@ class DealCommonCfg:
         conf.read(self.cfg_path, encoding="utf-8")  # python3
         # conf.read(self.cfg_path)  # python2
         # 获取所有的section
-        # sections = conf.sections()                                         # 返回list
+        # sections = conf.sections()                                                    # 返回list
         # print sections
         items = conf.items(section)
-        return items                                                         # list里面对象是元祖
+        return items                                                                    # list里面对象是元祖
 
     # 参数必须遵从section,item的顺序
     def remove_config(self, *args):

@@ -22,6 +22,7 @@ class InterfaceHeadDeal:
         return m.hexdigest()
 
     @ staticmethod
+    # 接口头部处理方法,主要是部分数据需要加密处理,然后添加到头部信息内,在发送请求时一起传送头部的参数,如果接口不需要,则不用该函数处理头部信息
     def sign_headers(payload, request_data_type):
         access_key = '7ef9a26e5a32ca9699b930541875dbfb'
         secret_key = '8040c5dbf6978f315e104e5c0bca3e8e2baa4221'

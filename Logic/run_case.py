@@ -11,19 +11,20 @@ from Logic.interface_deal import InterfaceDeal      # 注意,导入的包中也�
 
 
 class RunTest:
-    test_case_list = []                                    # 存储测试用例内容的列表
-    result_id = ''                                         # 这是test_result_data表中的id值,为了每次用例执行完毕后找的到所需要更新的表记录
-    param_list = ['num', 'api_purpose', 'request_url', 'request_method', 'request_data_type',
-                  'request_data', 'encryption', 'check_point', 'test_describe', 'relevance_case']
-    LogPrint().info("----------------开始读取excel中的测试用例----------------")
-    all_list = ExcelDeal().get_test('/Users/hongnaiwu/MyProject/InterfaceFrame/APICase/TestCase.xlsx')
-    for i in all_list:
-        me = dict(zip(param_list, i))
-        test_case_list.append(me)
     md = MysqlDeal()
     conn, cur = md.conn_db()
+    result_id = ''  # 这是test_result_data表中的id值,为了每次用例执行完毕后找的到所需要更新的表记录
+    param_list = ['num', 'api_purpose', 'request_url', 'request_method', 'request_data_type',
+                  'request_data', 'check_point', 'test_describe', 'relevance_case']
 
-    def run_interface_test(self):
+    def run_interface_test(self, test_case_file):
+        test_case_list = []                                         # 存储测试用例内容的列表
+        LogPrint().info("----------------开始读取excel中的测试用例----------------")
+        all_list = ExcelDeal().get_test(test_case_file, 'NormalTest')             # 将测试用例文件路径参数化,这种可以读取多个测试用例文件
+        for i in all_list:
+            me = dict(zip(self.param_list, i))
+            test_case_list.append(me)
+
         md = self.md
         conn = self.conn
         cur = self.cur
@@ -33,14 +34,14 @@ class RunTest:
 
         md.other_operate_db(conn, cur, sql_one)
         sql_two = 'select result_id from test_result_data order by create_time desc limit 1'
-        result_one = md.select_db(cur, sql_two)
+        result_one = md.select_db(conn, cur, sql_two)
         result_id = result_one[0][0]
 
         LogPrint().info("----------------开始执行测试用例----------------")
         # 记录测试开始时间
         start_time = datetime.datetime.now()
 
-        self.run_test(result_id)
+        self.run_test(result_id, test_case_list)
 
         # 将测试用例执行时间存入到数据库中
         time.sleep(0.5)
@@ -59,12 +60,11 @@ class RunTest:
         # 发送测试报告
         ms.send_mail(text)
 
-    def run_test(self, result_id):
+    def run_test(self, result_id, test_case_list):
         check_list = []                                     # 用来核对某个用例是否已经执行过
         md = self.md
         conn = self.conn
         cur = self.cur
-        test_case_list = self.test_case_list
         # 该值是interface_test()函数处理完接口,并且断言完毕返回的结果,需要根据该结果更新test_result_data表的内容
         result_temp = ''
         for x in range(len(test_case_list)):
@@ -80,7 +80,8 @@ class RunTest:
                             # 如果已循环到该未执行过的被关联的接口
                             if int(test_case_list[y]['num']) == int(test_case_list[x]['relevance_case']):
                                 # 先执行被关联的接口
-                                result_two = self.run_test2(test_case_list[x]['relevance_case'], result_id)
+                                result_two = self.run_test2(test_case_list[x]['relevance_case'], result_id,
+                                                            test_case_list)
                                 LogPrint().info("----------继续调用第" + test_case_list[x]['num'] + "个测试用例的接口----------")
                                 # 执行完毕后将该用例的编号存入到检查列表中,防止再次执行
                                 check_list.append(int(test_case_list[x]['relevance_case']))
@@ -93,16 +94,8 @@ class RunTest:
                                                     test_case_list[x]['request_data_type'], request_data_last,
                                                     test_case_list[x]['check_point'], test_case_list[x]['test_describe'],
                                                     test_case_list[x]['relevance_case'])
-                                result_temp2, response = ifd.interface_test()
+                                result_temp, response = ifd.interface_test()
                                 check_list.append(int(test_case_list[x]['num']))
-
-                                LogPrint().info("----------------根据用例执行情况,开始更新测试结果表的相关数据----------------")
-                                if result_temp2 == 'success':
-                                    CommonMethod.sql_deal_two(md, conn, cur, 'success_num', result_id)
-                                elif result_temp2 == 'fail':
-                                    CommonMethod.sql_deal_two(md, conn, cur, 'fail_num', result_id)
-                                elif result_temp2 == 'error':
-                                    CommonMethod.sql_deal_two(md, conn, cur, 'error_num', result_id)
 
                             # 如果未循环到该关联的接口
                             else:
@@ -118,7 +111,7 @@ class RunTest:
                                 result_temp = 'execute yet'
                                 sql_two = 'select response from test_case where case_id = %d order by create_time desc ' \
                                           'limit 1' % (int(test_case_list[x]['relevance_case']))
-                                result = md.select_db(cur, sql_two)
+                                result = md.select_db(conn, cur, sql_two)
                                 result_two = result[0][0]
 
                                 # 处理请求接口的数据,将被关联的接口数据赋值给请求的接口数据中
@@ -145,9 +138,20 @@ class RunTest:
 
                 # 未执行的用例,没有关联其他的测试用例,则直接调用interface_test函数,处理该接口即可
                 else:
+                    '''
+                    这里接口没有关联其他接口,但是可能请求的参数中,会用到已单独封装的接口返回数据,或者其他随机函数的数据,所以需要将接口请求参数
+                     另外再做处理,将未赋值的参数赋值,这里必须要有"data"数据,因为该函数还需要处理其他接口返回的值,这里为方便不修改代码先这样
+                    '''
+                    if test_case_list[x]['request_data_type'] == 'File':
+                        request_data_last = CommonMethod.request_type_file(test_case_list[x]['request_data'],
+                                                                           test_case_list[x]['num'])
+                    else:
+                        request_data_last = CommonMethod.request_data_deal(test_case_list[x]['request_data'],
+                                                                           '{"code": 0, "msg": "操作成功!", "data": {}}')
+
                     ifd = InterfaceDeal(test_case_list[x]['num'], test_case_list[x]['api_purpose'],
                                         test_case_list[x]['request_url'], test_case_list[x]['request_method'],
-                                        test_case_list[x]['request_data_type'], test_case_list[x]['request_data'],
+                                        test_case_list[x]['request_data_type'], request_data_last,
                                         test_case_list[x]['check_point'], test_case_list[x]['test_describe'],
                                         test_case_list[x]['relevance_case'])
                     result_temp, response = ifd.interface_test()
@@ -168,8 +172,7 @@ class RunTest:
             else:
                 LogPrint().info("----------------被关联的测试用例结果已更新,无需再次更新----------------")
 
-    def run_test2(self, relevance_case, result_id):
-        test_case_list = self.test_case_list
+    def run_test2(self, relevance_case, result_id, test_case_list):
         md = self.md
         conn = self.conn
         cur = self.cur
@@ -199,7 +202,6 @@ class RunTest:
                 continue
 
 
-if __name__ == '__main__':
-    RunTest().run_interface_test()
+
 
 

@@ -1,0 +1,8 @@
+{
+ "id": "1005",
+ "session_3rd": "9326ED712ED8AC32CAFBE322F85AD8F1",
+ "openid": "",
+ "storeId": 465,
+ "companyId": 465,
+ "systemType": "mall"
+}

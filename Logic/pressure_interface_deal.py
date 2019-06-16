@@ -13,9 +13,7 @@ import importlib
 importlib.reload(sys)
 
 
-class InterfaceDeal:
-    # s = requests.session()
-    # s.keep_alive = False  # 关闭多余连接
+class PressureInterfaceDeal:
 
     md = MysqlDeal()
     conn, cur = md.conn_db()
@@ -31,7 +29,7 @@ class InterfaceDeal:
     response_last = ''                                          # 接口请求的最后结果,需要存储到数据库中的response字段的值
 
     def __init__(self, num, api_purpose, request_url, request_method, request_data_type, request_data,
-                 check_point, test_describe, relevance_case):
+                 check_point, pressure_test_file):
         self.num = num                                          # 用例编号
         self.api_purpose = api_purpose                          # 接口名称
         self.api_host = self.host                               # 接口域名
@@ -40,24 +38,23 @@ class InterfaceDeal:
         self.request_data_type = request_data_type              # 请求数据类型
         self.request_data = request_data                        # 请求数据
         self.check_point = check_point                          # 断言内容
-        self.test_describe = test_describe                      # 测试描述
-        self.relevance_case = relevance_case                    # 关联用例
+        self.pressure_test_file = pressure_test_file            # 用例参数所需的测试文件
 
     # 接口调用函数
-    def interface_test(self):
+    def p_interface_test(self):
         if self.request_method == 'POST' and self.request_data_type != 'File':
-            assert_result = self.post_deal()
+            assert_result = self.p_post_deal()
             return assert_result, self.response_last
         elif self.request_method == 'GET':
-            assert_result = self.get_deal()
+            assert_result = self.p_get_deal()
             return assert_result, self.response_last
         elif self.request_data_type == 'File':
-            assert_result = self.post_deal()
+            assert_result = self.p_post_deal()
             return assert_result, self.response_last
         else:
             LogPrint().info("----------------请求方法或类型有误----------------")
 
-    def post_deal(self):
+    def p_post_deal(self):
         data = eval(self.request_data)                                                            # 将str类型转换成字典类型
         payload = json.dumps(data)
         headers = {'content-type': "application/json"}
@@ -80,16 +77,16 @@ class InterfaceDeal:
             else:
                 resp2 = resp1                      # 如果接口请求是404、415等非正常的状态码,那么返回的数据就不需要进行处理,直接存入数据库中即可
 
-            assert_result = self.common_code_one(status, resp2)
+            assert_result = self.p_common_code_one(status, resp2)
             self.response_last = resp2
             return assert_result
 
         except Timeout:
-            assert_result = self.common_code_two(url)
+            assert_result = self.p_common_code_two(url)
             self.response_last = "null"
             return assert_result
 
-    def get_deal(self):
+    def p_get_deal(self):
         url = self.api_host + self.request_url
         LogPrint().info('-------------调用第' + self.num + '个测试用例的接口-------------：' + url)
         try:
@@ -100,22 +97,22 @@ class InterfaceDeal:
 
             if type(resp1 == "bytes"):
                 resp1 = str(resp1, encoding="utf-8")
-            assert_result = self.common_code_one(status, resp1)
+            assert_result = self.p_common_code_one(status, resp1)
             return assert_result
 
         except Timeout:
-            assert_result = self.common_code_two(url)
+            assert_result = self.p_common_code_two(url)
             return assert_result
 
     # 公共函数,主要用于结果判断和处理
-    def common_code_one(self, status, resp):
-        sql = self.sql_deal('fail', resp)
+    def p_common_code_one(self, status, resp):
+        sql = self.p_sql_deal('fail', resp)
         if status == 200:
             LogPrint().info('----------------返回结果成功----------------：' + resp)
-            self.assert_deal(resp)
+            self.p_assert_deal(resp)
             if self.assert_result == 'success':
                 LogPrint().info('----------------测试断言结果----------------：' + '第' + str(self.num) + '个测试用例断言：通过')
-                sql = self.sql_deal('success', resp)
+                sql = self.p_sql_deal('success', resp)
                 self.md.other_operate_db(self.conn, self.cur, sql)
                 assert_result = 'success'
             else:
@@ -127,14 +124,15 @@ class InterfaceDeal:
                              '个测试用例的接口请求失败!! [ ' + str(status) + ' ], ' + resp)
             assert_result = 'error'
             self.md.other_operate_db(self.conn, self.cur, sql)
+            # self.md.close_db(self.conn, self.cur)
         return assert_result
 
-    def common_code_two(self, url):
+    def p_common_code_two(self, url):
         LogPrint().error('----------------返回结果失败----------------：' + '第' + str(self.num) +
                          '个测试用例的接口请求超时响应,请注意!! [ ' + url + ' ]')
         assert_result = 'error'
         # 测试结果失败的用例信息存入数据库
-        sql = self.sql_deal('fail', ' ')
+        sql = self.p_sql_deal('fail', ' ')
         self.md.other_operate_db(self.conn, self.cur, sql)
 
         mail_title = '接口响应超时: ' + self.api_purpose + ':' + url
@@ -145,7 +143,7 @@ class InterfaceDeal:
     断言结果函数,断言的方式有两种,一种是code和msg的值断言(包括正常和异常断言),另一种是接口关键数据断言,校验具体返回的数据字段值,所以excel中的
     check_point数据格式必须是这三种:包含code、包含msg、或者"${openId}=test"格式,最后格式的符号和预期值可以变化
     """
-    def assert_deal(self, resp):
+    def p_assert_deal(self, resp):
         check_point_list = self.check_point.split(",")
         check_result_list = []
         for i in check_point_list:                                  # check_point中可能需要多个校验的数据,所以要用逗号分隔符对字符串进行切片
@@ -194,18 +192,8 @@ class InterfaceDeal:
         else:
             self.assert_result = 'success'
 
-    def sql_deal(self, result, response):
-        # 如果请求的接口关联用例的值不为空,则需要从数据库中查询该关联的用例url值, A接口关联B接口后,因为A执行之前其关联的B用例接口一定执行了,所以直接从数据库中查找即可
-        if int(self.relevance_case) != 0:
-            sql_two = 'select url from test_case where case_id = %d order by create_time desc ' \
-                      'limit 1' % int(self.relevance_case)
-            result = self.md.select_db(self.conn, self.cur, sql_two)
-            relevance_case_url = result[0][0]               # 所关联的接口的url值,需要存储到数据库中relevance_case_url字段的值
-        else:
-            relevance_case_url = ""
-
+    def p_sql_deal(self, result, response):
         url = self.api_host + self.request_url
-
         create_time = datetime.datetime.now()
         center_temp = '\"'
         if center_temp in str(self.request_data):
@@ -224,12 +212,24 @@ class InterfaceDeal:
         else:
             status = 0
         # 这里需要将参数都加上''符号,不然在sql语句中不是string类型,如请求方法时post,在sql中需要变为'post'才正确
-        sql = "insert into test_case(case_id,request_method,request_data_type,interface_name,url," \
-              "request_data,assert_fail_reason,test_describe,status,response,relevance_case_url,create_time) " \
-              "values(%d,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)" % \
+        sql = "insert into pressure_test_case(case_id,request_method,request_data_type,interface_name,url," \
+              "request_data,assert_fail_reason,status,response,create_time) " \
+              "values(%d,%s,%s,%s,%s,%s,%s,%d,%s,%s)" % \
               (int(self.num), "\'" + self.request_method + "\'", "\'" + self.request_data_type + "\'", "\'" +
-               self.api_purpose + "\'", "\'" + url + "\'", request_data_last, check_point_last, "\'" +
-               self.test_describe + "\'", status, "\'" + response + "\'", "\'" + relevance_case_url + "\'", "\'" +
-               str(create_time) + "\'")
+               self.api_purpose + "\'", "\'" + url + "\'", request_data_last, check_point_last,
+               status, "\'" + response + "\'", "\'" + str(create_time) + "\'")
         return sql
 
+    # 用例执行完毕后根据执行结果,更新pressure_test_data表的sql语句
+    @staticmethod
+    def pressure_sql_two(md, conn, cur, field, result_id):
+        sql_one = 'select %s,case_total from pressure_test_data where result_id = %d' % (field, result_id)
+        result_two = md.select_db(conn, cur, sql_one)
+        filed_num = result_two[0][0]
+        case_total = result_two[0][1]
+
+        sql_two = 'update pressure_test_data set %s = %d,case_total = %d where result_id = %d' \
+                  % (field, filed_num + 1, case_total + 1, result_id)
+        LogPrint().info("-------更新测试结果表的sql语句是-------:" + sql_two)
+
+        md.other_operate_db(conn, cur, sql_two)

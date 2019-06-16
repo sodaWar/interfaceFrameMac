@@ -1,17 +1,29 @@
 # coding=utf-8
 from Logic.log_print import LogPrint
+from Config.read_config import DealCommonCfg
 import json
 import hashlib
 import os
-import xlrd                                                                                                             # 操作xlsx文件的库
-import base64                                                                                                           # 生成的编码可逆,速度快,生成ascii字符,但是容易破解,仅适用于加密非关键信息的场合
-from pyDes import *                                                                                                     # 使用pydes库进行des加密
+import xlrd                                                                                             # 操作xlsx文件的库
+import base64                                      # 生成的编码可逆,速度快,生成ascii字符,但是容易破解,仅适用于加密非关键信息的场合
+from pyDes import *                                                                               # 使用pydes库进行des加密
 
 
 class ExcelDeal:
+    @staticmethod
+    def read_excel():
+        LogPrint().info("----------------读取配置文件中测试用例文件的路径信息----------------")
+        dcc = DealCommonCfg()
+        my_list = dcc.read_config('test_case_file')                  # 获得配置文件中的信息内容
+        my_dic = {}  # 将获得的内容转换为字典类型
+        for i in my_list:
+            my_dic[i[0]] = i[1]  # python3的写法,下面是python2的写法
+        values = list(my_dic.values())
+        return values
+
     # 获取excel文件中的测试用例
     @ staticmethod
-    def get_test(case):
+    def get_test(case, test_type):
         # join()函数是连接字符串数组,os.path.join()函数是将多个路径组合后返回,os.getcwd()是返回当前进程的工作目录,testcase是测试用例文件的目录地址
         case = os.path.join(os.getcwd(), case)
         if not os.path.exists(case):
@@ -24,10 +36,16 @@ class ExcelDeal:
         all_list = []
 
         for i in range(1, table.nrows):  # 循环行列表数据,table.nrows是获取行数
-            # table.cell().value获取某个单元格的内容值,该方法第一个参数是行数,第二个参数是列数
-            # 这里判断测试用例的active是否是活跃的,活跃的代表可测试,不活跃的代表不测试,所以添加的时候需要选择用例是否活跃
-            if table.cell(i, 10).value.replace('\n', '').replace('\r', '') != 'Yes':
+            """
+            table.cell().value获取某个单元格的内容值,该方法第一个参数是行数,第二个参数是列数
+            这里判断测试用例的active是否是活跃的,活跃的代表可测试,不活跃的代表不测试,所以添加的时候需要选择用例是否活跃
+            """
+
+            if test_type == 'NormalTest' and table.cell(i, 10).value.replace('\n', '').replace('\r', '') != 'Yes':
                 continue
+            elif test_type == 'PressureTest' and table.cell(i, 9).value.replace('\n', '').replace('\r', '') != 'Yes':
+                continue
+
             num = str(int(table.cell(i, 0).value)).replace('\n', '').replace('\r', '')
             api_purpose = table.cell(i, 1).value.replace('\n', '').replace('\r', '')
             request_url = table.cell(i, 2).value.replace('\n', '').replace('\r', '')
@@ -36,9 +54,6 @@ class ExcelDeal:
             request_data = table.cell(i, 5).value.replace('\n', '').replace('\r', '')
             encryption = table.cell(i, 6).value.replace('\n', '').replace('\r', '')
             check_point = table.cell(i, 7).value.replace('\n', '').replace('\r', '')
-            test_describe = table.cell(i, 8).value.replace('\n', '').replace('\r', '')
-            relevance_case = str(int(table.cell(i, 9).value)).replace('\n', '').replace('\r', '')
-            # relevance_case = table.cell(i, 9).value.replace('\n', '').replace('\r', '').split(';')
 
             if encryption == 'MD5':  # 如果数据采用md5加密，便先将数据加密,这里加密的密码需要跟不同接口的session有关系
                 request_data = json.loads(request_data)
@@ -47,8 +62,23 @@ class ExcelDeal:
             elif encryption == 'DES':  # 数据采用des加密
                 k = des('secretKEY', padmode=PAD_PKCS5)
                 request_data = base64.b64encode(k.encrypt(json.dumps(pwd)))
-            param_list = [num, api_purpose, request_url, request_method, request_data_type, request_data,
-                          encryption, check_point, test_describe, relevance_case]
-            all_list.append(param_list)
+
+            if test_type == 'NormalTest':
+                test_describe = table.cell(i, 8).value.replace('\n', '').replace('\r', '')
+                relevance_case = str(int(table.cell(i, 9).value)).replace('\n', '').replace('\r', '')
+
+                param_list = [num, api_purpose, request_url, request_method, request_data_type, request_data,
+                              check_point, test_describe, relevance_case]
+                all_list.append(param_list)
+
+            elif test_type == 'PressureTest':
+                pressure_test_file = table.cell(i, 8).value.replace('\n', '').replace('\r', '')
+                param_list = [num, api_purpose, request_url, request_method, request_data_type, request_data,
+                              check_point, pressure_test_file]
+                all_list.append(param_list)
+            else:
+                LogPrint().info("----------------获取用例文件时传参的type值错误----------------")
+                continue
+
         return all_list
 
