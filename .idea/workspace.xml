@@ -2,34 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="51ed7632-4463-41e7-a4a0-f4c88d0340ec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/APICase/NormalTestCase.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/APICase/OneTestCase.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/APICase/PressureTestCase.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/interface_deal_alone.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/txt_file_pub.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Config/case_file_one.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Config/form_template_one.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Config/pressure_test_one.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Config/random_param_one.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Logic/pressure_interface_deal.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Logic/pressure_test_run.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/execute_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dc69974d-526b-4b08-9ed1-fcfe9d6956ce.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dc69974d-526b-4b08-9ed1-fcfe9d6956ce.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Config/pressure_test_two.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APICase/TestCase.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/APICase/TestCase2.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/excel_pub.py" beforeDir="false" afterPath="$PROJECT_DIR$/Common/excel_pub.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/interface_header_pub.py" beforeDir="false" afterPath="$PROJECT_DIR$/Common/interface_header_pub.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APICase/NormalTestCase.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/APICase/NormalTestCase.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APICase/PressureTestCase.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/APICase/PressureTestCase.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/interface_deal_alone.py" beforeDir="false" afterPath="$PROJECT_DIR$/Common/interface_deal_alone.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Common/method_pub.py" beforeDir="false" afterPath="$PROJECT_DIR$/Common/method_pub.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/mysql_pub.py" beforeDir="false" afterPath="$PROJECT_DIR$/Common/mysql_pub.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Config/cfg.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/cfg.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/read_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/Config/read_config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic/html_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/html_report.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic/interface_deal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/interface_deal.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logic/log_print.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/log_print.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logic/pressure_interface_deal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/pressure_interface_deal.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logic/pressure_test_run.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/pressure_test_run.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logic/test1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/test1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_case.py" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/run_case.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/locale.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python2.7/posixpath.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +21,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/InterfaceFrame$test1.coverage" NAME="test1 Coverage Results" MODIFIED="1560672547191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Logic" />
+    <SUITE FILE_PATH="coverage/InterfaceFrame$test1.coverage" NAME="test1 Coverage Results" MODIFIED="1560828407769" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Logic" />
     <SUITE FILE_PATH="coverage/InterfaceFrame$mysql_pub.coverage" NAME="mysql_pub Coverage Results" MODIFIED="1558592497305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Common" />
     <SUITE FILE_PATH="coverage/InterfaceFrame$pressure_test.coverage" NAME="pressure_test Coverage Results" MODIFIED="1560653790807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Logic" />
     <SUITE FILE_PATH="coverage/InterfaceFrame$interface_deal_alone.coverage" NAME="interface_deal_alone Coverage Results" MODIFIED="1560160796945" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Common" />
@@ -46,7 +29,7 @@
     <SUITE FILE_PATH="coverage/InterfaceFrame$interface_deal.coverage" NAME="interface_deal Coverage Results" MODIFIED="1559715640042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Logic" />
     <SUITE FILE_PATH="coverage/InterfaceFrame$test2.coverage" NAME="test2 Coverage Results" MODIFIED="1559619586648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Logic" />
     <SUITE FILE_PATH="coverage/InterfaceFrame$method_pub.coverage" NAME="method_pub Coverage Results" MODIFIED="1560624705779" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Common" />
-    <SUITE FILE_PATH="coverage/InterfaceFrame$execute_main.coverage" NAME="execute_main Coverage Results" MODIFIED="1560686624492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/InterfaceFrame$execute_main.coverage" NAME="execute_main Coverage Results" MODIFIED="1560850266181" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/InterfaceFrame$html_report.coverage" NAME="html_report Coverage Results" MODIFIED="1558583071559" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Logic" />
     <SUITE FILE_PATH="coverage/InterfaceFrame$run_case.coverage" NAME="run_case Coverage Results" MODIFIED="1560324467166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -83,22 +66,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Logic/test1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="87" selection-start-line="87" selection-end-line="87" />
-              <folding>
-                <element signature="e#411#425#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/execute_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+            <state relative-caret-position="60">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
               </folding>
@@ -107,24 +78,36 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Logic/pressure_interface_deal.py">
+        <entry file="file://$PROJECT_DIR$/Logic/test1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="51" column="10" selection-start-line="51" selection-start-column="10" selection-end-line="51" selection-end-column="10" />
+            <state relative-caret-position="630">
+              <caret line="42" selection-start-line="42" selection-end-line="42" />
               <folding>
-                <element signature="e#15#51#0" expanded="true" />
+                <element signature="e#411#425#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Logic/pressure_test_run.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="232">
+              <caret line="118" column="61" selection-start-line="118" selection-start-column="61" selection-end-line="118" selection-end-column="61" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Logic/pressure_test_run.py">
+        <entry file="file://$PROJECT_DIR$/Logic/pressure_interface_deal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-316">
-              <caret line="99" column="24" selection-start-line="99" selection-start-column="24" selection-end-line="99" selection-end-column="24" />
+            <state relative-caret-position="456">
+              <caret line="88" column="25" selection-start-line="88" selection-start-column="25" selection-end-line="88" selection-end-column="25" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#15#51#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -141,24 +124,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>开始发送测试报告</find>
-      <find>查询结束,数据库无数据</find>
-      <find>random_para</find>
-      <find>status</find>
-      <find>正在连接mysql服务器</find>
-      <find>获取用例文件时传参的type值错误</find>
-      <find>encryption</find>
-      <find>test_case_list</find>
-      <find>param_list</find>
-      <find>testcase_file.txt</find>
-      <find>form_data_template</find>
-      <find>openId</find>
-      <find>DealCommonCfg</find>
-      <find>random_method_param</find>
-      <find>relevance_case</find>
-      <find>test_describe</find>
       <find>request_data_last</find>
-      <find>print</find>
       <find>测试用例的接口</find>
       <find>Exiting</find>
       <find>exitFlag</find>
@@ -168,9 +134,26 @@
       <find>other_operate_db</find>
       <find>select_db</find>
       <find>更新测试结果表的sql语句是</find>
-      <find>根据用例执行情况,开始更新测试结果表的相关数据</find>
       <find>lock</find>
+      <find>根据用例执行情况,开始更新测试结果表的相关数据</find>
+      <find>StreamHandler</find>
+      <find>dt</find>
+      <find>formatter</find>
+      <find>FileHandler</find>
+      <find>log_path</find>
+      <find>pressure_log</find>
+      <find>调用第1个测试用例的接口</find>
+      <find>self.logger</find>
+      <find>Log</find>
       <find>个测试用例的接口</find>
+      <find>请求方法或类型有误</find>
+      <find>press</find>
+      <find>InterfaceDealAlone</find>
+      <find>request_data_temp</find>
+      <find>print</find>
+      <find>result_temp</find>
+      <find>num</find>
+      <find>返回结果成功</find>
     </findStrings>
     <replaceStrings>
       <replace>items</replace>
@@ -208,19 +191,24 @@
         <option value="$PROJECT_DIR$/Config/pressure_test.txt" />
         <option value="$PROJECT_DIR$/Common/excel_pub.py" />
         <option value="$PROJECT_DIR$/Config/case_file_one.txt" />
-        <option value="$PROJECT_DIR$/Common/interface_deal_alone.py" />
         <option value="$PROJECT_DIR$/Common/txt_file_pub.py" />
-        <option value="$PROJECT_DIR$/Config/cfg.ini" />
         <option value="$PROJECT_DIR$/execute_main.py" />
         <option value="$PROJECT_DIR$/Logic/html_report.py" />
         <option value="$PROJECT_DIR$/Logic/interface_deal.py" />
         <option value="$PROJECT_DIR$/Logic/run_case.py" />
-        <option value="$PROJECT_DIR$/Logic/test1.py" />
         <option value="$PROJECT_DIR$/Common/mysql_buffer.py" />
-        <option value="$PROJECT_DIR$/Common/method_pub.py" />
-        <option value="$PROJECT_DIR$/Logic/pressure_interface_deal.py" />
         <option value="$PROJECT_DIR$/Logic/pressure_test.py" />
         <option value="$PROJECT_DIR$/Common/mysql_pub.py" />
+        <option value="$PROJECT_DIR$/Logic/pressure_log.py" />
+        <option value="$PROJECT_DIR$/Log/2019_06_17.log" />
+        <option value="$PROJECT_DIR$/Logic/log_print.py" />
+        <option value="$PROJECT_DIR$/Config/cfg.ini" />
+        <option value="$PROJECT_DIR$/Common/interface_deal_alone.py" />
+        <option value="$PROJECT_DIR$/Config/pressure_test_two.txt" />
+        <option value="$PROJECT_DIR$/Common/method_pub.py" />
+        <option value="$PROJECT_DIR$/Logic/pressure_test_run.py" />
+        <option value="$PROJECT_DIR$/Logic/test1.py" />
+        <option value="$PROJECT_DIR$/Logic/pressure_interface_deal.py" />
       </list>
     </option>
   </component>
@@ -277,12 +265,12 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Logic" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Config" />
       <recent name="$PROJECT_DIR$/APICase" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Logic" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -441,7 +429,10 @@
       <workItem from="1558950930019" duration="329000" />
       <workItem from="1559112316089" duration="25285000" />
       <workItem from="1559215572387" duration="69120000" />
-      <workItem from="1559740343174" duration="125872000" />
+      <workItem from="1559740343174" duration="127058000" />
+      <workItem from="1560770593826" duration="2419000" />
+      <workItem from="1560773158489" duration="341000" />
+      <workItem from="1560773596294" duration="22442000" />
     </task>
     <task id="LOCAL-00001" summary="两个接口关联后的请求处理完毕">
       <created>1559739469836</created>
@@ -471,22 +462,29 @@
       <option name="project" value="LOCAL" />
       <updated>1559792703277</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="接口压力测试的基础可以实现,之后再补充">
+      <created>1560687058311</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1560687058311</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="249250000" />
+    <option name="totallyTimeSpent" value="275638000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="39" y="23" width="1401" height="877" extended-state="6" />
+    <frame x="43" y="23" width="1397" height="877" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49936306" visible="true" weight="0.15452538" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49936306" visible="true" weight="0.17490774" />
       <window_info id="Structure" order="1" sideWeight="0.50063694" side_tool="true" weight="0.20028612" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3299363" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2522293" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24076433" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.30318472" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -536,46 +534,12 @@
     <MESSAGE value="两个接口关联后的请求处理完毕" />
     <MESSAGE value="日志文件路径修改" />
     <MESSAGE value="完善注释" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善注释" />
+    <MESSAGE value="接口压力测试的基础可以实现,之后再补充" />
+    <option name="LAST_COMMIT_MESSAGE" value="接口压力测试的基础可以实现,之后再补充" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/lib/python3.7/site-packages/PyH-0.1.1/pyh.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="197" column="20" selection-start-line="197" selection-start-column="20" selection-end-line="197" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.7/site-packages/PyH-0.1.1/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="11" lean-forward="true" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/python_stubs/-1199943126/posix.py" />
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/python_stubs/-1199943126/sys.py" />
-    <entry file="file:///usr/local/lib/python2.7/site-packages/pyh2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.7/site-packages/pyh2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="90" column="8" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://dc69974d-526b-4b08-9ed1-fcfe9d6956ce/schema/testinterface/table/test_result_data" />
     <entry file="das://dc69974d-526b-4b08-9ed1-fcfe9d6956ce/schema/testinterface/table/test_case" />
-    <entry file="file://$PROJECT_DIR$/Log/2019_06_03.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7641" />
-      </provider>
-    </entry>
     <entry file="file:///usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/json/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="262">
@@ -598,16 +562,6 @@
     <entry file="file://$PROJECT_DIR$/Report/report-20190606 11-32-21.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Logic/log_print.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
-          <folding>
-            <element signature="e#15#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.7/site-packages/requests/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -615,13 +569,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Config/random_param">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" selection-start-column="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Config/random_param" />
     <entry file="file:///usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/genericpath.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1800" />
@@ -634,16 +582,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/posixpath.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="13" lean-forward="true" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-          <folding>
-            <element signature="e#495#504#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/posixpath.py" />
     <entry file="file://$PROJECT_DIR$/Common/redis_mongo_pub.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="840">
@@ -654,16 +593,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/locale.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Config/random_param_one.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="5" selection-start-column="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/locale.py" />
     <entry file="file://$PROJECT_DIR$/Logic/mail_send.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -739,16 +669,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Common/interface_deal_alone.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="45" column="17" lean-forward="true" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.7/site-packages/pymysql/err.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="457">
@@ -760,13 +680,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="219" selection-start-line="219" selection-end-line="219" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Config/cfg.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>
@@ -784,16 +697,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Logic/html_report.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="28" column="38" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="38" />
-          <folding>
-            <element signature="e#45#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Common/txt_file_pub.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -804,43 +707,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Logic/test1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="87" selection-start-line="87" selection-end-line="87" />
-          <folding>
-            <element signature="e#411#425#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Common/mysql_buffer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" column="48" lean-forward="true" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Log/2019_06_12.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="1937" column="57" selection-start-line="1937" selection-start-column="57" selection-end-line="1937" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Common/method_pub.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-334">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#15#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Common/mysql_buffer.py" />
     <entry file="file://$PROJECT_DIR$/Logic/run_case.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="448">
@@ -863,40 +730,156 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Logic/interface_deal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="137" column="29" selection-start-line="137" selection-start-column="29" selection-end-line="137" selection-end-column="29" />
+        <state relative-caret-position="253">
+          <caret line="93" column="57" selection-start-line="93" selection-start-column="57" selection-end-line="93" selection-end-column="57" />
           <folding>
             <element signature="e#15#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Log/2019_06_12.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21810">
+          <caret line="1937" column="57" selection-start-line="1937" selection-start-column="57" selection-end-line="1937" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Log/2019_06_15.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="30">
+          <caret line="23" column="65" selection-start-line="23" selection-start-column="65" selection-end-line="23" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Log/2019_06_03.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="-7641" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Log/2019_06_04.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="390">
+          <caret line="26" column="54" lean-forward="true" selection-start-line="26" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Log/2019_06_17.log">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="LogFileEditorProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logic/pressure_log.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="83" column="23" lean-forward="true" selection-end-line="88" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Config/cfg.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="53" column="55" lean-forward="true" selection-start-line="53" selection-start-column="55" selection-end-line="53" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Config/random_param_one.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" selection-start-column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logic/log_print.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+          <folding>
+            <element signature="e#15#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Common/interface_deal_alone.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="47" column="14" lean-forward="true" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logic/html_report.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+          <folding>
+            <element signature="e#45#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Config/pressure_test_two.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Common/method_pub.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="162" column="42" selection-start-line="162" selection-start-column="42" selection-end-line="162" selection-end-column="42" />
+          <folding>
+            <element signature="e#15#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="864" selection-start-line="864" selection-end-line="864" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Logic/test1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+          <folding>
+            <element signature="e#411#425#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/execute_main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Logic/pressure_interface_deal.py">
+    <entry file="file://$PROJECT_DIR$/Logic/pressure_test_run.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="51" column="10" selection-start-line="51" selection-start-column="10" selection-end-line="51" selection-end-column="10" />
+        <state relative-caret-position="232">
+          <caret line="118" column="61" selection-start-line="118" selection-start-column="61" selection-end-line="118" selection-end-column="61" />
           <folding>
-            <element signature="e#15#51#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Logic/pressure_test_run.py">
+    <entry file="file://$PROJECT_DIR$/Logic/pressure_interface_deal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-316">
-          <caret line="99" column="24" selection-start-line="99" selection-start-column="24" selection-end-line="99" selection-end-column="24" />
+        <state relative-caret-position="456">
+          <caret line="88" column="25" selection-start-line="88" selection-start-column="25" selection-end-line="88" selection-end-column="25" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#15#51#0" expanded="true" />
           </folding>
         </state>
       </provider>

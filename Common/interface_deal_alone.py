@@ -46,8 +46,8 @@ class InterfaceDealAlone:
     @staticmethod
     # 该函数的接口请求数据的格式是application/x-www-form-urlencoded数据格式,因此该类型的请求方式如下(这里是登录接口)
     def user_login():
-        request_data = {'session_3rd': 'F11375CE782FD5836A549E6F1B908CF6HUku02',
-                        'sessionId': 'F11375CE782FD5836A549E6F1B908CF6HUku02', 'storeId': 295, 'systemType': 'diancan'}
+        request_data = {'session_3rd': '53F7A970D68D0DFE3190E4D64ACD058B07qIFT',
+                        'sessionId': '53F7A970D68D0DFE3190E4D64ACD058B07qIFT', 'storeId': 295, 'systemType': 'diancan'}
         url = 'https://test.ydxcx.net/api/user/userMsg'
         response_alone = InterfaceDealAlone.urlencoded_template(request_data, url)
         return response_alone

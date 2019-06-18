@@ -29,7 +29,7 @@ class PressureInterfaceDeal:
     response_last = ''                                          # 接口请求的最后结果,需要存储到数据库中的response字段的值
 
     def __init__(self, num, api_purpose, request_url, request_method, request_data_type, request_data,
-                 check_point, pressure_test_file):
+                 check_point, pressure_test_file, thread_name):
         self.num = num                                          # 用例编号
         self.api_purpose = api_purpose                          # 接口名称
         self.api_host = self.host                               # 接口域名
@@ -39,6 +39,7 @@ class PressureInterfaceDeal:
         self.request_data = request_data                        # 请求数据
         self.check_point = check_point                          # 断言内容
         self.pressure_test_file = pressure_test_file            # 用例参数所需的测试文件
+        self.thread_name = thread_name                          # 线程组的名称
 
     # 接口调用函数
     def p_interface_test(self):
@@ -52,15 +53,14 @@ class PressureInterfaceDeal:
             assert_result = self.p_post_deal()
             return assert_result, self.response_last
         else:
-            LogPrint().info("----------------请求方法或类型有误----------------")
+            LogPrint().info("------------请求方法或类型有误------------")
 
     def p_post_deal(self):
         data = eval(self.request_data)                                                            # 将str类型转换成字典类型
         payload = json.dumps(data)
         headers = {'content-type': "application/json"}
-        # headers = InterfaceHeadDeal().sign_headers(payload, self.request_data_type)
         url = self.api_host + self.request_url
-        LogPrint().info('-------------调用第' + self.num + '个测试用例的接口-------------：' + url)
+        LogPrint().info('---------调用第' + self.num + '个测试用例的接口,线程组' + self.thread_name + '---------')
 
         try:
             response = ''
@@ -88,7 +88,7 @@ class PressureInterfaceDeal:
 
     def p_get_deal(self):
         url = self.api_host + self.request_url
-        LogPrint().info('-------------调用第' + self.num + '个测试用例的接口-------------：' + url)
+        LogPrint().info('--------调用第' + self.num + '个测试用例的接口,线程组是' + self.thread_name + '--------：' + url)
         try:
             response = requests.get(url=url, params=self.request_data, timeout=5)
             status = response.status_code
@@ -108,28 +108,32 @@ class PressureInterfaceDeal:
     def p_common_code_one(self, status, resp):
         sql = self.p_sql_deal('fail', resp)
         if status == 200:
-            LogPrint().info('----------------返回结果成功----------------：' + resp)
+            LogPrint().info('-----------返回结果成功-----------：' + '第' + str(self.num) + '个测试用例,线程组' +
+                            self.thread_name + '接口请求成功,' + resp)
+
             self.p_assert_deal(resp)
             if self.assert_result == 'success':
-                LogPrint().info('----------------测试断言结果----------------：' + '第' + str(self.num) + '个测试用例断言：通过')
+                LogPrint().info('---------第' + str(self.num) + '个测试用例,线程组' + self.thread_name +
+                                '的测试断言结果为---------：通过')
                 sql = self.p_sql_deal('success', resp)
                 self.md.other_operate_db(self.conn, self.cur, sql)
                 assert_result = 'success'
             else:
-                LogPrint().info('----------------测试断言结果----------------：' + '第' + str(self.num) + '个测试用例断言：失败')
+                LogPrint().info('---------第' + str(self.num) + '个测试用例,线程组' + self.thread_name +
+                                '的测试断言结果为---------：失败')
                 self.md.other_operate_db(self.conn, self.cur, sql)
                 assert_result = 'fail'
         else:
-            LogPrint().error('----------------返回结果失败----------------：' + '第' + str(self.num) +
-                             '个测试用例的接口请求失败!! [ ' + str(status) + ' ], ' + resp)
+            LogPrint().error('-----------返回结果失败-----------：' + '第' + str(self.num) +
+                             '个测试用例,线程组' + self.thread_name + '的接口请求失败!! [ ' + str(status) + ' ], ' + resp)
             assert_result = 'error'
             self.md.other_operate_db(self.conn, self.cur, sql)
-            # self.md.close_db(self.conn, self.cur)
+
         return assert_result
 
     def p_common_code_two(self, url):
-        LogPrint().error('----------------返回结果失败----------------：' + '第' + str(self.num) +
-                         '个测试用例的接口请求超时响应,请注意!! [ ' + url + ' ]')
+        LogPrint().info('-----------第' + str(self.num) + '个测试用例,线程组' + self.thread_name +
+                        '的接口请求超时响应,请注意!! [ ' + url + ' ]')
         assert_result = 'error'
         # 测试结果失败的用例信息存入数据库
         sql = self.p_sql_deal('fail', ' ')
@@ -222,7 +226,7 @@ class PressureInterfaceDeal:
 
     # 用例执行完毕后根据执行结果,更新pressure_test_data表的sql语句
     @staticmethod
-    def pressure_sql_two(md, conn, cur, field, result_id):
+    def pressure_sql_two(num, thread_name, md, conn, cur, field, result_id):
         sql_one = 'select %s,case_total from pressure_test_data where result_id = %d' % (field, result_id)
         result_two = md.select_db(conn, cur, sql_one)
         filed_num = result_two[0][0]
@@ -230,6 +234,7 @@ class PressureInterfaceDeal:
 
         sql_two = 'update pressure_test_data set %s = %d,case_total = %d where result_id = %d' \
                   % (field, filed_num + 1, case_total + 1, result_id)
-        LogPrint().info("-------更新测试结果表的sql语句是-------:" + sql_two)
+        LogPrint().info("-------第" + str(num) + "个测试用例,线程组" + thread_name +
+                        "的更新测试结果表的sql语句是-------:" + sql_two)
 
         md.other_operate_db(conn, cur, sql_two)

@@ -65,7 +65,6 @@ class CommonMethod:
             temp = '$' + i                          # 该参数使用场景:两个接口关联时,请求的接口参数中需要用到被关联的接口返回的结果
             temp_two = '&' + i                      # 该参数使用场景:请求的接口参数中,用到的是自定义的函数值
             temp_three = '*' + i                    # 该参数使用场景:请求的接口参数中,用到单独封装处理的接口返回值,如登录接口等
-            temp_four = '~' + i                     # 该参数使用场景:txt文件内的数据赋值给接口参数中
             if temp == request_data_temp[i]:        # 如果请求的key值对应的value值是$+key的值如goodId这个key的值是$goodId
                 try:
                     # response_data[i]表示先在关联接口返回的数据中,所有data的正常key值查询是否存在该key，如果有这个key的值,则赋给接口请求的这个有参数的key的值
@@ -110,8 +109,6 @@ class CommonMethod:
                 response_alone = InterfaceDealAlone.user_login()
                 request_data_temp[i] = CommonMethod.response_alone_deal(response_alone, i)
 
-            elif temp_four == request_data_temp[i]:     # 考虑下要不要这么做,感觉直接在请求这种类型的接口时再进行特殊处理,不用多余的这个步骤
-                print("把所有txt文件内的数据都赋值给该参数,再请求该接口的时候再进行多线程启动接口,并且赋不同的值")
             else:
                 continue
 
@@ -162,11 +159,21 @@ class CommonMethod:
         except TypeError:
             LogPrint().info("-------请检查resp这个接口返回值格式和数据是否正确,如接口session过期导致等-------")
         response_data = {}
+
+        # 这里几个try、except会导致程序运行缓慢,请注意,后面优化
         try:
             response_data = response_data_temp["user"]
         except KeyError:
-            LogPrint().info("-------user这个key值不存在于接口返回值中,请核对接口请求的正确性-------")
-        return response_data[param]
+            try:
+                response_data = response_data_temp['user']
+            except KeyError:
+                LogPrint().info("-------user这个key值不存在于接口返回值中,请核对接口请求的正确性-------")
+
+        try:
+            return response_data[param]
+        except KeyError:
+            LogPrint().info("-------参数param不存在于resp中,请核对-------")
+            return ''
 
     # 接口请求参数中的某个值是随机数中的一个的场景！该函数是生成一个指定范围内的整数
     @staticmethod
@@ -230,3 +237,20 @@ class CommonMethod:
         f.close()
         return request_data
 
+    # 倒计时函数,可用于活动倒计时,暂时没有用到,需要时调用
+    @staticmethod
+    def count_down(deadline):
+        # deadline的格式:'2019-06-19 0:0:0'
+        end_time = datetime.datetime.strptime(deadline, '%Y-%m-%d %H:%M:%S')                    # 预期结束的时间
+        now_time = datetime.datetime.today()                                                    # 现在的时间
+        differ_time = end_time - now_time
+        day = differ_time.days
+        hour = int(differ_time.seconds/60/60)                                              # 预期结束时间减去现在的时间的总秒数,分别计算时、分、秒
+        minutes = int((differ_time.seconds-hour*60*60)/60)
+        seconds = differ_time.seconds-hour*60*60-minutes*60
+
+        return ('\033[30;43m距离结束:\033[0m' +
+                '\033[1;31;43m'+str(day)+'\033[0m'+'\033[30;43m天\033[0m' +
+                '\033[1;31;43m'+str(hour)+'\033[0m'+'\033[30;43m时\033[0m' +
+                '\033[1;31;43m'+str(minutes)+'\033[0m'+'\033[30;43m分\033[0m' +
+                '\033[1;31;43m'+str(seconds)+'\033[0m'+'\033[30;43m秒\033[0m')
