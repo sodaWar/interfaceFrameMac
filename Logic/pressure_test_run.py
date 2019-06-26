@@ -1,7 +1,6 @@
 import datetime
 import time
 from Common.excel_pub import ExcelDeal
-from Logic.run_case import RunTest
 import threading
 from Logic.mail_send import MailSend
 from Logic.html_report import HtmlReport
@@ -13,13 +12,20 @@ from Logic.pressure_interface_deal import PressureInterfaceDeal
 
 lock = threading.Lock()
 
+"""
+压力测试用例中Concurrent Number为并发数,All Request Number为线程数的字段;异步启动了20个线程,如果没有限制,那么可能会并发产生10或者15个等数量的线程并发压力
+这时候需要在执行线程时限制每次并发执行的个数最多只能是5个的需求; 开了100个线程那么并发数就是100,所以总共需要启动100个线程的话,
+而需求中并发数不一定是100，可以是10，那么就需要限制10个并发数. 所以这里并发数就是1秒同时请求的线程数（其他已启动的线程会阻塞）；
+线程数就是总共启动的线程数量，最后执行完线程数的时间就是线程数量/并发数,最后的秒数就是执行的时间
+"""
+
 
 class PressureTest:
     md = MysqlDeal()
     conn, cur = md.conn_db()
     result_id = ''                                 # 这是pressure_test_data表中的id值,为了每次用例执行完毕后找的到所需要更新的表记录
     param_list = ['num', 'api_purpose', 'request_url', 'request_method', 'request_data_type',
-                  'request_data', 'check_point', 'pressure_test_file']
+                  'request_data', 'check_point', 'pressure_test_file', 'concurrent_number', 'all_request_number']
 
     def run_pressure_test(self, test_case_file):
         test_case_list = []                                               # 存储测试用例内容的列表
@@ -43,16 +49,17 @@ class PressureTest:
 
         LogPrint().info("----------------开始执行测试用例----------------")
         # 记录测试开始时间
-        # start_time = datetime.datetime.now()
+        start_time = datetime.datetime.now()
 
         PressureTest().run_deal_one(result_id, test_case_list)
 
         # 将测试用例执行时间存入到数据库中
-        # time.sleep(0.5)
-        # end_time = datetime.datetime.now()
-        # start_time, end_time = CommonMethod.test_time_deal(md, conn, cur, start_time, end_time, result_id)
+        time.sleep(0.5)
+        end_time = datetime.datetime.now()
+        start_time, end_time = CommonMethod.test_time_deal(md, conn, cur, start_time, end_time, result_id,
+                                                           'PressureTest')
 
-        # LogPrint().info("----------------生成测试报告----------------")
+        LogPrint().info("----------------生成测试报告----------------")
         # filename = HtmlReport().generate_html(md, conn, cur, 'test report',
         #                                       '/Users/hongnaiwu/MyProject/InterfaceFrame/Report/report.html',
         #                                       start_time, end_time)
@@ -65,15 +72,15 @@ class PressureTest:
         # ms.send_mail(text)
 
     def run_deal_one(self, result_id, test_case_list):
-        # result_temp = ''
-
         for x in range(len(test_case_list)):                # 循环整个测试用例
             request_data_list = PressureTest.request_deal_two(test_case_list[x]['request_data'],
                                                               test_case_list[x]['pressure_test_file'])
+            pressure_num = int(test_case_list[x]['all_request_number'])
 
+            initial_value = int(test_case_list[x]['concurrent_number'])         # 信号量对象的初始值
+            sm = threading.Semaphore(initial_value)     # 创建一个信号量的对象,函数内的4是设置初始值为4,即最大同时请求的线程数不超过4
             # 创建线程数组,这是多线程请求每个测试用例需要请求的次数
             threads = []
-            pressure_num = len(request_data_list)
 
             """
             # 如果需要传kwargs参数,如下方式:
@@ -82,21 +89,52 @@ class PressureTest:
             """
 
             # 循环创建线程t，并将每个创建的线程添加到线程数组中
-            for i in range(pressure_num):
-                thread_name = 'Thread-' + str(i)
-                t = threading.Thread(target=PressureTest.run_deal_two, args=(self, thread_name, test_case_list[x],
-                                                                             request_data_list[i], result_id))
-                threads.append(t)
+            if pressure_num <= len(request_data_list):
+                for i in range(pressure_num):
+                    thread_name = 'Thread-' + str(i)
+                    t = threading.Thread(target=PressureTest.run_deal_two, args=(self, thread_name, test_case_list[x],
+                                                                                 request_data_list[i], result_id, sm))
+                    t.start()
+            # 如果总请求数比txt文件内的参数要多,则需要利用txt文件内的数循环赋值请求参数
+            elif pressure_num > len(request_data_list):
+                request_last_list = []                                                                  # 所有循环赋值后的参数列表
+                special_num = (pressure_num + len(request_data_list) - 1)//len(request_data_list)       # 两数相除,向上取整
+                # 有多少次请求,就在列表内增加多少个参数
+                for y in range(special_num):
+                    if y != special_num-2:
+                        for i in range(len(request_data_list)):
+                            request_last_list.append(request_data_list[i])
+
+                    else:
+                        special_num_two = pressure_num - (special_num-1) * len(request_data_list)
+                        for i in range(special_num_two):
+                            request_last_list.append(request_data_list[i])
+
+                for i in range(pressure_num):
+                    thread_name = 'Thread-' + str(i)
+                    t = threading.Thread(target=PressureTest.run_deal_two, args=(self, thread_name, test_case_list[x],
+                                                                                 request_last_list[i], result_id, sm))
+                    threads.append(t)
 
             # 启动线程
             for t in threads:
                 t.start()
 
-            length = len(threading.enumerate())                               # 枚举返回个列表
+            length = len(threading.enumerate())  # 枚举返回个列表
             LogPrint().info("----------------当前运行的线程数为：%d----------------" % length)
+            """
+            主线程中调用子线程的join方法,这样主线程在子线程完成之前就会一直堵塞;这里注意join()方法放置的位置,要等待所有的子线程启动并执行完毕后
+            才能执行join()函数,如果直接放在start()函数后面,那么就是每启动一个线程,就必须等这个线程执行完毕后才能启动下一个线程,会一直阻塞其他
+            线程的启动和执行.如果没有join()函数那么就会导致最后整个接口请求的时间有错误,因为主程序没有受到阻塞,那么就会导致程序提前执行了
+            test_time_deal()这个函数,存入数据库中的time_consuming的值错误,因此要等所有子线程执行完后才能调用join()函数
+            """
+            for t in threads:
+                t.join()
 
     # 单个接口请求
-    def run_deal_two(self, thread_name, one_test_case, request_data_last, result_id):
+    def run_deal_two(self, thread_name, one_test_case, request_data_last, result_id, sm):
+        sm.acquire()                # 每次调用信号量对象的acquire()函数,都会使内部计数器减1
+        # print(threading.currentThread().getName() + ' request api ...\n')                     # 获得当前线程的名字,即第几个线程
 
         md = self.md
         conn = self.conn
@@ -105,7 +143,8 @@ class PressureTest:
         ifd = PressureInterfaceDeal(one_test_case['num'], one_test_case['api_purpose'], one_test_case['request_url'],
                                     one_test_case['request_method'], one_test_case['request_data_type'],
                                     request_data_last, one_test_case['check_point'],
-                                    one_test_case['pressure_test_file'], thread_name)
+                                    one_test_case['pressure_test_file'], one_test_case['concurrent_number'],
+                                    one_test_case['all_request_number'], thread_name)
         result_temp, response = ifd.p_interface_test()
 
         if result_temp == 'success':
@@ -114,7 +153,7 @@ class PressureTest:
             表不会有影响,是因为不同的线程插入到pressure_test_case表内的记录不同,所以多个线程不会对同一个记录的数据做修改,而结果表是所有的线程
             都会对同一个记录的数据做修改,因此需要加上互斥锁,保持同步才可
             """
-            lock.acquire()                                      # 创建锁
+            lock.acquire()                                      # 创建锁,防止多个线程异步操作数据库,同时修改某个表的记录
             PressureInterfaceDeal.pressure_sql_two(one_test_case['num'], thread_name, md, conn, cur, 'success_num',
                                                    result_id)
             lock.release()                                      # 释放锁
@@ -130,6 +169,12 @@ class PressureTest:
             lock.release()
         else:
             LogPrint().info("----------------接口断言后的结果值有误,请核对!----------------")
+
+        time.sleep(3)
+
+        # print(threading.currentThread().getName() + ' released request...\n')
+
+        sm.release()                        # 每次调用信号量对象的release()函数,都会使内部计数器加1
 
     # 把所有txt文件内的数据都赋值给接口中该类型的参数,然后请求该接口的时候再进行多线程启动接口,并且赋不同的值!
     @staticmethod

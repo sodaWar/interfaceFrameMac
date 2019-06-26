@@ -29,7 +29,7 @@ class PressureInterfaceDeal:
     response_last = ''                                          # 接口请求的最后结果,需要存储到数据库中的response字段的值
 
     def __init__(self, num, api_purpose, request_url, request_method, request_data_type, request_data,
-                 check_point, pressure_test_file, thread_name):
+                 check_point, pressure_test_file, concurrent_number, all_request_number, thread_name):
         self.num = num                                          # 用例编号
         self.api_purpose = api_purpose                          # 接口名称
         self.api_host = self.host                               # 接口域名
@@ -39,6 +39,8 @@ class PressureInterfaceDeal:
         self.request_data = request_data                        # 请求数据
         self.check_point = check_point                          # 断言内容
         self.pressure_test_file = pressure_test_file            # 用例参数所需的测试文件
+        self.concurrent_number = concurrent_number              # 接口并发的数量
+        self.all_request_number = all_request_number            # 接口请求的总次数
         self.thread_name = thread_name                          # 线程组的名称
 
     # 接口调用函数
@@ -217,11 +219,12 @@ class PressureInterfaceDeal:
             status = 0
         # 这里需要将参数都加上''符号,不然在sql语句中不是string类型,如请求方法时post,在sql中需要变为'post'才正确
         sql = "insert into pressure_test_case(case_id,request_method,request_data_type,interface_name,url," \
-              "request_data,assert_fail_reason,status,response,create_time) " \
-              "values(%d,%s,%s,%s,%s,%s,%s,%d,%s,%s)" % \
+              "request_data,assert_fail_reason,status,response,concurrent_number,all_request_number,create_time) " \
+              "values(%d,%s,%s,%s,%s,%s,%s,%d,%s,%d,%d,%s)" % \
               (int(self.num), "\'" + self.request_method + "\'", "\'" + self.request_data_type + "\'", "\'" +
                self.api_purpose + "\'", "\'" + url + "\'", request_data_last, check_point_last,
-               status, "\'" + response + "\'", "\'" + str(create_time) + "\'")
+               status, "\'" + response + "\'", int(self.concurrent_number), int(self.all_request_number),
+               "\'" + str(create_time) + "\'")
         return sql
 
     # 用例执行完毕后根据执行结果,更新pressure_test_data表的sql语句

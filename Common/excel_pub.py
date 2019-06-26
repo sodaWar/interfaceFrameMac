@@ -43,7 +43,7 @@ class ExcelDeal:
 
             if test_type == 'NormalTest' and table.cell(i, 10).value.replace('\n', '').replace('\r', '') != 'Yes':
                 continue
-            elif test_type == 'PressureTest' and table.cell(i, 9).value.replace('\n', '').replace('\r', '') != 'Yes':
+            elif test_type == 'PressureTest' and table.cell(i, 11).value.replace('\n', '').replace('\r', '') != 'Yes':
                 continue
 
             num = str(int(table.cell(i, 0).value)).replace('\n', '').replace('\r', '')
@@ -73,8 +73,10 @@ class ExcelDeal:
 
             elif test_type == 'PressureTest':
                 pressure_test_file = table.cell(i, 8).value.replace('\n', '').replace('\r', '')
+                concurrent_number = str(int(table.cell(i, 9).value)).replace('\n', '').replace('\r', '')
+                all_request_number = str(int(table.cell(i, 10).value)).replace('\n', '').replace('\r', '')
                 param_list = [num, api_purpose, request_url, request_method, request_data_type, request_data,
-                              check_point, pressure_test_file]
+                              check_point, pressure_test_file, concurrent_number, all_request_number]
                 all_list.append(param_list)
             else:
                 LogPrint().info("----------------获取用例文件时传参的type值错误----------------")

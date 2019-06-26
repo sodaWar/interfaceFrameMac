@@ -11,7 +11,7 @@ from Logic.log_print import LogPrint
 class CommonMethod:
 
     @ staticmethod
-    def test_time_deal(md, conn, cur, start_time, end_time, result_id):
+    def test_time_deal(md, conn, cur, start_time, end_time, result_id, test_type):
         start_time_one = start_time.strftime("%Y-%m-%d %H:%M:%S")                           # 将时间转换成对应的格式,返回值类型为str类型
         start_time_two = datetime.datetime.strptime(start_time_one, "%Y-%m-%d %H:%M:%S")    # 将str类型的时间转换成datetime类型
 
@@ -22,8 +22,13 @@ class CommonMethod:
         # 获取两个时间相差的总秒数,另外date、time和datetime类都支持与timedelta的加、减运算
         time_consuming = result_time.total_seconds()
 
-        sql = 'update test_result_data set time_consuming = %s where result_id = %d' % \
-              (time_consuming, result_id)
+        sql = ''
+        if test_type == 'NormalTest':
+            sql = 'update test_result_data set time_consuming = %s where result_id = %d' % \
+                  (time_consuming, result_id)
+        elif test_type == 'PressureTest':
+            sql = 'update pressure_test_data set time_consuming = %s where result_id = %d' % \
+                  (time_consuming, result_id)
         md.other_operate_db(conn, cur, sql)
 
         return start_time_two, end_time_two

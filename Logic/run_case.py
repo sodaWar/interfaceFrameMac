@@ -46,7 +46,7 @@ class RunTest:
         # 将测试用例执行时间存入到数据库中
         time.sleep(0.5)
         end_time = datetime.datetime.now()
-        start_time, end_time = CommonMethod.test_time_deal(md, conn, cur, start_time, end_time, result_id)
+        start_time, end_time = CommonMethod.test_time_deal(md, conn, cur, start_time, end_time, result_id, 'NormalTest')
 
         LogPrint().info("----------------生成测试报告----------------")
         filename = HtmlReport().generate_html(md, conn, cur, 'test report',
